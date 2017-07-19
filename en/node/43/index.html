@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Drupal on a virtual host in MAMP on Mac OS X | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>5 years 50 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Drupal on a virtual host in MAMP on Mac OS X</h2>                                                  <div class="clear-block">
+            <div id="node-43" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Mon, 08/01/2011 - 22:33</span>
+  
+    </div>
+
+  <div class="content">
+    <p>When you install MAMP, localhost points to your htdocs folder. I install multiple sites in there, so that localhost/example, for example, is a Drupal site. The thing is, certain irritating things happen when Drupal is running in a subdirectory, so I would rather have my Drupal sites run on, for example, example.local. Here's how that's done:</p>
+<p>== Before you start == </p>
+<p>Make a backup of your /etc/hosts file</p>
+<p>Make a backup of your /Applications/MAMP/conf/apache/httpd.conf file, then add this to the end of the original:</p>
+<p>NameVirtualHost *</p>
+<p>ServerName localhost<br />
+DocumentRoot /Applications/MAMP/htdocs</p>
+<p>== For each site ==</p>
+<p>(1) add an entry to /etc/hosts</p>
+<p>echo "127.0.0.1       example.local" &gt;&gt; /etc/hosts</p>
+<p>(2) add an entry to the httpd.conf file</p>
+<p>echo '' &gt;&gt; /Applications/MAMP/conf/apache/httpd.conf<br />
+echo '' &gt;&gt; /Applications/MAMP/conf/apache/httpd.conf<br />
+echo "ServerName example.local" &gt;&gt; /Applications/MAMP/conf/apache/httpd.conf<br />
+echo "DocumentRoot /Applications/MAMP/htdocs/example" &gt;&gt; /Applications/MAMP/conf/apache/httpd.conf<br />
+echo '' &gt;&gt; /Applications/MAMP/conf/apache/httpd.conf</p>
+<p>(3) restart MAMP's apache</p>
+<p>/Applications/MAMP/bin/apache2/bin/apachectl restart</p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-872"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-872" class="active">Great tip! This was my method</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Fri, 08/31/2012 - 17:58.  </div>
+
+  <div class="content">
+    <p>Great tip! This was my method of brwiosng local web sites until I recently stumbled across a fairly new desktop server application called ServerPress, which handles the configuration of my hosts files for me via a step wizard.</p>
+      </div>
+
+  </div>
+<a id="comment-1042"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1042" class="active">As /etc/hosts is privileged,</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 04/24/2013 - 04:05.  </div>
+
+  <div class="content">
+    <p>As /etc/hosts is privileged, if (A) doesn't work for you right off the bat, use (B). </p>
+<p>(A) echo "127.0.0.1 example.local" &gt;&gt; /etc/hosts"<br />
+(B) echo "127.0.0.1 example.local" | sudo tee -a /etc/hosts</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

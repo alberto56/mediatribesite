@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>See my watched issues in Jira | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 11 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>See my watched issues in Jira</h2>                                                  <div class="clear-block">
+            <div id="node-108" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Fri, 05/02/2014 - 08:46</span>
+  
+    </div>
+
+  <div class="content">
+    <p>It took me a while to figure this out. I'm following (watching) issues in Jira and need to see them. If my Jira URL is myjira.example.com, here is the list of watched issues.</p>
+
+<pre><code>https://myjira.example.com/issues/?jql=watcher%20%3D%20currentUser()
+</code></pre>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1249"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1249" class="active">Or Create a Filter...
+You can</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 12/10/2014 - 05:42.  </div>
+
+  <div class="content">
+    <p>Or Create a Filter...</p>
+<p>You can also create an Advanced Filter in your issues page and give it the filter of...</p>
+<p><div class="codeblock"><code>issue in watchedissues()</code></div></p>
+<p>Or, more usefully, show all issues <em>not</em> assigned to me...</p>
+<p><div class="codeblock"><code>issue in watchedissues() AND assignee != currentuser() ORDER BY assignee ASC</code></div></p>
+      </div>
+
+  </div>
+<a id="comment-1255"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1255" class="active">Thank you!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 03/19/2015 - 13:48.  </div>
+
+  <div class="content">
+    <p>Thank you!</p>
+      </div>
+
+  </div>
+<a id="comment-1256"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1256" class="active">Works great--thx!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 04/29/2015 - 09:02.  </div>
+
+  <div class="content">
+    <p>Works great--thx!</p>
+      </div>
+
+  </div>
+<a id="comment-1264"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1264" class="active">Thanks a lot for the tip</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Mon, 11/16/2015 - 03:56.  </div>
+
+  <div class="content">
+    <p>Thanks a lot for the tip</p>
+      </div>
+
+  </div>
+<a id="comment-1268"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1268" class="active">Super helpful!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Mon, 02/01/2016 - 12:24.  </div>
+
+  <div class="content">
+    <p>Super helpful!</p>
+      </div>
+
+  </div>
+<a id="comment-1274"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1274" class="active">Really great--I can&#039;t believe</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Fri, 04/22/2016 - 20:44.  </div>
+
+  <div class="content">
+    <p>Really great--I can't believe this isn't a default filter!</p>
+      </div>
+
+  </div>
+<a id="comment-1283"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1283" class="active">Thank you</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 06/28/2016 - 23:58.  </div>
+
+  <div class="content">
+    <p>Thank you</p>
+      </div>
+
+  </div>
+<a id="comment-1289"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1289" class="active">This was super helpful and</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 10/06/2016 - 18:32.  </div>
+
+  <div class="content">
+    <p>This was super helpful and worked for me. Thanks!</p>
+      </div>
+
+  </div>
+<a id="comment-1290"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1290" class="active">Still works!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 10/12/2016 - 05:11.  </div>
+
+  <div class="content">
+    <p>Still works!</p>
+      </div>
+
+  </div>
+<a id="comment-1291"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1291" class="active">Nice. Thanks.</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 10/13/2016 - 19:30.  </div>
+
+  <div class="content">
+    <p>Nice. Thanks.</p>
+      </div>
+
+  </div>
+<a id="comment-1294"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1294" class="active">Best. Cheers for that.</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 12/20/2016 - 20:55.  </div>
+
+  <div class="content">
+    <p>Best. Cheers for that.</p>
+      </div>
+
+  </div>
+<a id="comment-1296"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1296" class="active">Still works! :) Thanks!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 01/05/2017 - 22:49.  </div>
+
+  <div class="content">
+    <p>Still works! :) Thanks!</p>
+      </div>
+
+  </div>
+<a id="comment-1300"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1300" class="active">WORKS!! THANK YOU!!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 02/02/2017 - 09:58.  </div>
+
+  <div class="content">
+    <p>WORKS!! THANK YOU!!</p>
+      </div>
+
+  </div>
+<a id="comment-1303"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1303" class="active">cool</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 02/16/2017 - 07:31.  </div>
+
+  <div class="content">
+    <p>cool</p>
+      </div>
+
+  </div>
+<a id="comment-1316"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1316" class="active">Is there a way to find issues</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 06/07/2017 - 16:51.  </div>
+
+  <div class="content">
+    <p>Is there a way to find issues watched by another user? I want to show all the issues I reported and are watched by my boss :)</p>
+      </div>
+
+  </div>
+<a id="comment-1317"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1317" class="active">This saved me SO much time!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 06/22/2017 - 03:21.  </div>
+
+  <div class="content">
+    <p>This saved me SO much time! Works great, thank you so much!</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

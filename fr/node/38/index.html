@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Theme-specific image styles (equivelent of imagecache) in Drupal 7  | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>4 years 30 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Theme-specific image styles (equivelent of imagecache) in Drupal 7 </h2>                                                  <div class="clear-block">
+            <div id="node-38" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 04/13/2011 - 14:04</span>
+  
+    </div>
+
+  <div class="content">
+    <p>(EDIT: 28 oct. 2011, changed the Drupal 7 version to reflect changes in the 7.9 implementation -- updated solution should work for all versions of D7, see also <a href="http://drupal.org/node/1129642">this issue</a>)</p>
+<p>Image styles in Drupal 7 are the equivalent of Imagecache presets in Drupal 6: definitions of a namespace with one or more effects for images. For example, a "thumbnail" image might be 150 pixel-wide version of your image. These image styles are then used in views, displayed nodes, etc.</p>
+<p>The problem is: what a "thumbnail" is for one theme might differ from what it is for another theme.</p>
+<p>Say you are using thumbnails for image galleries. Drupal 7's default thumbnail might be good for most themes, but you are developing a theme, mytheme, which requires your images to be desaturates (have an old-school black and white look). Your site might be quite complex and use other themes on other parts of the site, and you want thumbnail to be overridden only for mytheme.</p>
+<p>The point is: Image styles are intuitively related to the themes, not site-wide presets.</p>
+<p>Here is my solution:</p>
+<p>By default, a theme will use the image style definition as it normally would. For example: thumbnail.<br /><br />
+If your theme (let's call it mytheme) is overriding thumbnail, create a new preset called thumbnail_mytheme, with your desired effects.</p>
+<p>Now, add this code to your theme's template.php file:</p>
+
+<div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br /> * Override theme_image_style().<br /> * Use the required image style as usual, except if a special<br /> * imagestylename_themename style exists, in which case that style<br /> * overrides the default.<br /> */<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">PUT_YOUR_THEME_NAME_HERE_image_style</span><span style="color: #007700">(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">) {<br />&nbsp; global </span><span style="color: #0000BB">$theme</span><span style="color: #007700">;<br />&nbsp; if (</span><span style="color: #0000BB">array_key_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'style_name'</span><span style="color: #007700">] . </span><span style="color: #DD0000">'_' </span><span style="color: #007700">. </span><span style="color: #0000BB">$theme</span><span style="color: #007700">, </span><span style="color: #0000BB">image_styles</span><span style="color: #007700">())) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'style_name'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'style_name'</span><span style="color: #007700">] . </span><span style="color: #DD0000">'_' </span><span style="color: #007700">. </span><span style="color: #0000BB">$theme</span><span style="color: #007700">;<br />&nbsp; }<br /><br />&nbsp; </span><span style="color: #FF8000">// Starting with Drupal 7.9, the width and height attributes are<br />&nbsp; // added to the img tag. Adding the if clause to conserve <br />&nbsp; // compatibility with Drupal &lt; 7.9<br />&nbsp; </span><span style="color: #007700">if (</span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'image_style_transform_dimensions'</span><span style="color: #007700">)) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #FF8000">// Determine the dimensions of the styled image.<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$dimensions </span><span style="color: #007700">= array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'width' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'width'</span><span style="color: #007700">], <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'height' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'height'</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp; );<br /><br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">image_style_transform_dimensions</span><span style="color: #007700">(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'style_name'</span><span style="color: #007700">], </span><span style="color: #0000BB">$dimensions</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'width'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$dimensions</span><span style="color: #007700">[</span><span style="color: #DD0000">'width'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'height'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$dimensions</span><span style="color: #007700">[</span><span style="color: #DD0000">'height'</span><span style="color: #007700">];<br />&nbsp; }<br /><br />&nbsp; </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">] = </span><span style="color: #0000BB">image_style_url</span><span style="color: #007700">(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'style_name'</span><span style="color: #007700">], </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">]);<br />&nbsp; return </span><span style="color: #0000BB">theme</span><span style="color: #007700">(</span><span style="color: #DD0000">'image'</span><span style="color: #007700">, </span><span style="color: #0000BB">$variables</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+
+<p>Replace PUT_YOUR_THEME_NAME_HERE with your theme's machine name, clear your cache and <em>voilà</em>.</p>
+<p>EDIT (15 May 2011): Version for Drupal 6:<br />
+</p>
+<div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">PUT_YOUR_THEME_NAME_HERE_imagecache</span><span style="color: #007700">(</span><span style="color: #0000BB">$namespace</span><span style="color: #007700">, </span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #0000BB">$alt </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">$attributes </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">) {<br />&nbsp; global </span><span style="color: #0000BB">$theme</span><span style="color: #007700">;<br />&nbsp; if (</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">imagecache_preset_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$namespace </span><span style="color: #007700">. </span><span style="color: #DD0000">'_' </span><span style="color: #007700">. </span><span style="color: #0000BB">$theme</span><span style="color: #007700">))) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$namespace </span><span style="color: #007700">= </span><span style="color: #0000BB">$namespace </span><span style="color: #007700">. </span><span style="color: #DD0000">'_' </span><span style="color: #007700">. </span><span style="color: #0000BB">$theme</span><span style="color: #007700">;<br />&nbsp; }<br />&nbsp; </span><span style="color: #FF8000">// check is_null so people can intentionally pass an empty array of attributes to override<br />&nbsp; // the defaults completely... if<br />&nbsp; </span><span style="color: #007700">if (</span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$attributes</span><span style="color: #007700">)) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$attributes</span><span style="color: #007700">[</span><span style="color: #DD0000">'class'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'imagecache imagecache-' </span><span style="color: #007700">. </span><span style="color: #0000BB">$namespace</span><span style="color: #007700">;<br />&nbsp; }<br />&nbsp; </span><span style="color: #0000BB">$attributes </span><span style="color: #007700">= </span><span style="color: #0000BB">drupal_attributes</span><span style="color: #007700">(</span><span style="color: #0000BB">$attributes</span><span style="color: #007700">);<br />&nbsp; </span><span style="color: #0000BB">$imagecache_url </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecache_create_url</span><span style="color: #007700">(</span><span style="color: #0000BB">$namespace</span><span style="color: #007700">, </span><span style="color: #0000BB">$path</span><span style="color: #007700">);<br />&nbsp; return </span><span style="color: #DD0000">'&lt;img src="' </span><span style="color: #007700">. </span><span style="color: #0000BB">$imagecache_url </span><span style="color: #007700">. </span><span style="color: #DD0000">'" alt="' </span><span style="color: #007700">. </span><span style="color: #0000BB">check_plain</span><span style="color: #007700">(</span><span style="color: #0000BB">$alt</span><span style="color: #007700">) . </span><span style="color: #DD0000">'" title="' </span><span style="color: #007700">. </span><span style="color: #0000BB">check_plain</span><span style="color: #007700">(</span><span style="color: #0000BB">$title</span><span style="color: #007700">) . </span><span style="color: #DD0000">'" ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$attributes </span><span style="color: #007700">. </span><span style="color: #DD0000">' /&gt;'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-390"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-390" class="active">This is not bad at</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Fri, 04/15/2011 - 03:36.  </div>
+
+  <div class="content">
+    <p>This is not bad at all.</p>
+<p>Actually we already use this method for our mobile theme. Quite neat.</p>
+      </div>
+
+  </div>
+<a id="comment-410"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-410" class="active">I wonder if Drupal allows to</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 07/12/2011 - 08:26.  </div>
+
+  <div class="content">
+    <p>I wonder if Drupal allows to create attractive articles, with like press articles, let's say 2 images located anywhere, and some text. Said otherwise: it is possible to create a node equivalent to a mix of "img" and "p" html element. Seems basic, but I've not seen ANY true Drupal site with this. Actually Drupal page that talk about images, and how wonderful they are under Drupal, are pages without any image (or this is some kind of carousel). It seems that shows clearly a problem. I guess none exits because this is not easily done, and Drupal must allow only to create industrial non-customized content with a single image placed at a fixed location within the text (and maybe does not even allow text to wrap the image). For example can we create this (<a href="http://www.monkeydoit.com/wrap-text-images-html.php" title="http://www.monkeydoit.com/wrap-text-images-html.php">http://www.monkeydoit.com/wrap-text-images-html.php</a>) in Drupal 7? If so is it possible to see a page like this on the net ? Thanks.</p>
+      </div>
+
+  </div>
+<div class="indented"><a id="comment-412"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-412" class="active">Sure it&#039;s possible; Just use</a></h3>
+
+  <div class="submitted">
+    Submitted by root on Tue, 07/12/2011 - 12:44.  </div>
+
+  <div class="content">
+    <p>Sure it's possible; Just use full HTML as your input format, and put whatever HTML you want in there. For my clients who are not at ease with HTML, I often add a wysiwyg editor and IMCE bridge (easy to install modules), set up for security considerations, etc., then there really is no limit to what you can do.</p>
+<p>Often, people new to Drupal find the learning curve quite steep, but you'll find tons of resources on Drupal.org's forums.</p>
+<p>The subject of your comment is not exactly in line with the subject of the post, so I suggest you continue your search on the forums, but you'll get there!</p>
+<p>Cheers,</p>
+<p>Albert.</p>
+      </div>
+
+  </div>
+<div class="indented"><a id="comment-416"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-416" class="active">Albert, thanks. I was not</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 07/12/2011 - 18:37.  </div>
+
+  <div class="content">
+    <p>Albert, thanks. I was not aware you can use standard html tagging, I assumed wrongly you were bound to content templates, like Article, Basic Page, or customized templates. In the end I found one of the "famous sites using Drupal" (star war something) with multiple images.</p>
+<p>I'm trying to install a wysiwyg editor. Have chosen CKEditor over the Wysiwyg module, it seems this is the most usual choice.</p>
+<p>Put aside that the install is buggy (wrong path for the Ajax application), the latest stable version of the editor wrapper is not compatible with the latest Wysiwyg module, and the uninstall of CKEditor wrapper doesn't remove properly the outdated module...</p>
+<p>At this point I cannot add the CKFinder extension, the install procedure is not easy to understand, and the install location is also difficult to determine (taking into account the modules/libraries confusion)... </p>
+<p>I'm not sure I'll succeed, too bad, the editor is quite good, and allows indeed to cram pages with illustrations.</p>
+<p>And yes, for sure, the learning curve is a hard one, specially when you think that version 7 has not yet an official documentation, six months after the release. Seems quite usual, slow, slow. But well, it's free, and amazing.</p>
+      </div>
+
+  </div>
+</div></div><a id="comment-633"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-633" class="active">Awesome!
+I&#039;ve been looking</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 01/10/2012 - 05:44.  </div>
+
+  <div class="content">
+    <p>Awesome!</p>
+<p>I've been looking everywhere a solution to creating alternate image styles for a mobile theme. This also allows you to have an alternate image for teaser AND page view (mobile tools can't do this).</p>
+<p>Many, many thanks.</p>
+      </div>
+
+  </div>
+<a id="comment-1017"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1017" class="active">Thank you so much for this.</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 12/19/2012 - 10:46.  </div>
+
+  <div class="content">
+    <p>Thank you so much for this. This seemed to be my only solution in a multi domain site sharing content across domains. You saved my life after much head banging....:)</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

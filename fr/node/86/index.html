@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Drupal site hanging due to semaphore table | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>3 years 37 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Drupal site hanging due to semaphore table</h2>                                                  <div class="clear-block">
+            <div id="node-86" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Tue, 10/29/2013 - 13:45</span>
+  
+    </div>
+
+  <div class="content">
+    <p>I recently had to debug a problem on a production site, so I <a href="http://dcycleproject.org/blog/using-drush-and-ssh-clone-remote-database">cloned it to my local computer</a>.</p>
+<p>Now, the site was just hanging (loading forever).</p>
+<p>Here's how I fixed the problem:</p>
+<p>- I first <a href="../../../en/node/85/index.html">eabled xdebug on my local site</a>.<br />
+- Next I installed <a href="http://code.google.com/p/webgrind/">Webgrind</a>.<br />
+- Now I visited the hanging page and add ?XDEBUG_PROFILE=1 to the end of the URL<br />
+- Webgrind informed me that <a href="https://api.drupal.org/api/drupal/includes!lock.inc/function/lock_wait/7">lock_wait()</a> was being called repeatedly. Unfortunately I could not find the exact trace and arguments with Webgrind.<br />
+- I installed <a href="https://netbeans.org">Netbeans</a>, a nice IDE which allows you to set breakpoints on your PHP code, so I set the breakpoint directly on the lock_wait() function (make sure the path to PHP on Netbeans is the same path as what is actually used by the site, in my case /Applications/MAMP/bin/php/php5.4.4/bin/php, not /usr/bin/php). This told me that the lock on "variable_init" was never being released, and that the semaphore table was involved.<br />
+- Next, I made sure all my MySQL queries were being logged and inspected the result. Sure enough, the system was repeatedly trying to delete the semaphore entry for variable_init.<br />
+- Next, a trip to the command line, drush sqlc, and the following command did the trick:</p>
+<p><div class="codeblock"><code>delete from semaphore where name=&#039;variable_init&#039;; </code></div></p>
+<p>Now my site loads fine. I'm not sure if there are side effects to doing this, but in any case my local site is just for debugging purposes and I'll throw it away afterward.</p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1228"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1228" class="active">Wow, you&#039;ve put so much</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Mon, 08/18/2014 - 11:59.  </div>
+
+  <div class="content">
+    <p>Wow, you've put so much effort to find the problem. Also you solution looks good too!</p>
+<p>I think I have a similar issue. Instead of using those softwares I've used Newrelic to understand what's going on. </p>
+<p>My drupal 7 site goes down randomly for no apparent reason. Php-fpm &amp; Mysqld using so much RAM and I even can't ssh into my server to restart the services.</p>
+<p>When I check new relic, I've found the information below. What do you think? Can you help me?</p>
+<p>Using delete from semaphore where name='variable_init'; could help me? Is there a down side of this solution?</p>
+<p>SQL<br />
+DELETE FROM semaphore WHERE (name = :db_condition_placeholder_?) AND (value = :db_condition_placeholder_?) AND (expire &lt;= :db_condition_placeholder_?)</p>
+<p>Stack trace:<br />
+in PDOStatement::execute called at /home/prod/public_html/includes/database/database.inc (2171)<br />
+in DatabaseStatementBase::execute called at /home/prod/public_html/includes/database/database.inc (683)<br />
+in DatabaseConnection::query called at /home/prod/public_html/includes/database/query.inc (858)<br />
+in DeleteQuery::execute called at /home/prod/public_html/includes/lock.inc (181)<br />
+in lock_may_be_available called at /home/prod/public_html/includes/lock.inc (146)<br />
+in lock_acquire called at /home/prod/public_html/includes/bootstrap.inc (912)<br />
+in variable_initialize called at /home/prod/public_html/includes/bootstrap.inc (2478)<br />
+in _drupal_bootstrap_variables called at /home/prod/public_html/includes/bootstrap.inc (2242)<br />
+in drupal_bootstrap called at /home/prod/public_html/includes/bootstrap.inc (2376)<br />
+in _drupal_bootstrap_page_cache called at /home/prod/public_html/includes/bootstrap.inc (2234)<br />
+in drupal_bootstrap called at /home/prod/public_html/index.php (20)</p>
+      </div>
+
+  </div>
+<a id="comment-1248"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1248" class="active">it could be because of cron</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 12/03/2014 - 01:03.  </div>
+
+  <div class="content">
+    <p>it could be because of cron and crawl time</p>
+      </div>
+
+  </div>
+<a id="comment-1259"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1259" class="active">Thanks for this. Helped point</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 05/26/2015 - 23:02.  </div>
+
+  <div class="content">
+    <p>Thanks for this. Helped point me to the issue I was havving.</p>
+<p>I was unable to to do anything with my semaphore table, however.  To remediate it I did the following:</p>
+<p>show open tables; // Look for table where in_use &gt; 0 - probably semaphore<br />
+show processlist;<br />
+kill [process id]; // For any process that's acting on the locked table</p>
+      </div>
+
+  </div>
+<a id="comment-1286"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1286" class="active">I think you should consider</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 09/08/2016 - 10:20.  </div>
+
+  <div class="content">
+    <p>I think you should consider updating this post with references to the following issue on Drupal.org since there is a detailed discussion about a bug in innoDB. <a href="https://www.drupal.org/node/1898204#comment-8523869" title="https://www.drupal.org/node/1898204#comment-8523869">https://www.drupal.org/node/1898204#comment-8523869</a></p>
+<p>Updating Semaphore table engine to Memory is the solution.<br />
+Thanks for the post.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

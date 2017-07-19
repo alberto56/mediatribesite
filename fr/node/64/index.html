@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Automatic testing for your Drupal update and upgrade paths | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>4 years 50 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Automatic testing for your Drupal update and upgrade paths</h2>                                                  <div class="clear-block">
+            <div id="node-64" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 07/25/2012 - 09:22</span>
+  
+    </div>
+
+  <div class="content">
+    <h3>Introduction</h3>
+<p><a href="http://drupal.org/simpletest">Simpletest</a> is great for unit and functional tests for your Drupal modules; you can also use Simpletest to automatically test your module updates and upgrade path. The process is similar in Drupal 7 and Drupal 8, and this article will show you how to do it, and include some simple example modules.</p>
+<h3>Terminology</h3>
+<p>First, some terminology: <em>updates</em> of your module remains within the same major Drupal version, for example you might be updating your module from 7.x-1.0 to 7.x-1.1, or from 7.x-1.1 to 7.x-2.0. <em>Upgrades</em> are from one major Drupal version to another, for example from 7.x-2.0 to 8.x-2.0.</p>
+<h3>Upgrades</h3>
+<p>Let's take as an example a module which displays a string when visiting the path "hello" of your website; and let's call the module "Upgrade Test". Let's say that:</p>
+<ul>
+<li>In Drupal 6 the string is stored in a specific table in the database</li>
+<li>In Drupal 7 it is stored in the variable system</li>
+<li>In Drupal 8 it is stored in the <a href="http://groups.drupal.org/build-systems-change-management/cmi">configuration management system</a></li>
+</ul>
+<p>You can download these simple modules from my github account, with functional and unit tests for each, but <strong>without the upgrade path tests (for now)</strong>:</p>
+<ul>
+<li><a href="https://github.com/alberto56/upgradetest/tarball/6.x-1.0">upgradetest-6.x-1.0.tar.gz from github</a></li>
+<li><a href="https://github.com/alberto56/upgradetest/tarball/7.x-1.0">upgradetest-7.x-1.0.tar.gz from github</a></li>
+<li><a href="https://github.com/alberto56/upgradetest/tarball/8.x-1.0">upgradetest-8.x-1.0.tar.gz from github</a></li>
+</ul>
+<p>Based on these modules, we'll walk through the process of testing the upgrade path. Remember, there is no upgrade path between the above versions.</p>
+<p>Let's start by creating a version 7.x-2.x which will contain one new feature: an upgrade path from 6.x-1.0. (You can follow along by downloading <a href="https://github.com/alberto56/upgradetest/tarball/7.x-2.0">upgradetest-7.x-2.0.tar.gz from github</a>.) </p>
+<p>This will take the form of an implementation of <a href="http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_update_N/7">hook_update_N()</a> which will do the following:</p>
+<ul>
+<li>Take the value our module has stored in the Drupal 6 database table, and place it in a variable for Drupal 7</li>
+<li>Delete the Drupal 6 schema</li>
+</ul>
+<p>This, of course, is a pain to test manually, so we'll need to do some automatic testing. Drupal 7 ships with a complete basic Drupal 6 database description (at modules/simpletest/tests/upgrade), which we'll use to simulate a Drupal 6 (within our D7 test), then add our schema from the Drupal 6 version of our module, with some dummy data. Then we'll run the update, and finally we'll make sure that everything works in D7 (the data from D6 appears correctly, and the D6 table has been deleted).</p>
+<p>(We could also simply forego updating the entire D6 Drupal database to D7, and simply test our own database table. In fact, this is exactly what we'll do later on when testing <em>updates</em> (as opposed to <em>upgrades</em>).)</p>
+<p>Let's start by creating a new file called "drupal-6.upgradetest.database.php" in our module's folder. Let's keep it empty for now. It will be used to fill a database <em>to simulate how our module's data looks in a D6 database</em>.</p>
+<p>Now let's create a file called "upgrade.upgradetest.test" in our upgradetest folder, and referencing it in the .info file. In this file we'll define a new subclass of UpgradePathTestCase -- at the end we'll want it to look something like the <a href="http://api.drupal.org/api/drupal/modules!simpletest!tests!upgrade!upgrade.poll.test/7">upgrade path test case for the core poll module</a>. In the setUp() method of this class, we'll populate the database ourselves (rather than with the installer, which is how functional tests work):</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">...<br /></span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">databaseDumpFiles </span><span style="color: #007700">= array(<br />&nbsp; </span><span style="color: #0000BB">drupal_get_path</span><span style="color: #007700">(</span><span style="color: #DD0000">'module'</span><span style="color: #007700">, </span><span style="color: #DD0000">'simpletest'</span><span style="color: #007700">) . </span><span style="color: #DD0000">'/tests/upgrade/drupal-6.filled.database.php'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #0000BB">drupal_get_path</span><span style="color: #007700">(</span><span style="color: #DD0000">'module'</span><span style="color: #007700">, </span><span style="color: #DD0000">'upgradetest'</span><span style="color: #007700">) . </span><span style="color: #DD0000">'/drupal-6.upgradetest.database.php'</span><span style="color: #007700">,<br />);<br /></span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">setUp</span><span style="color: #007700">();<br />...<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>Now we need to fill the file "drupal-6.upgradetest.database.php". We need to simulate what a Drupal 6 database might look like for our module, along with some dummy data:</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// install the schema for our module as it exists in the .install file of the<br />// D6 version of our module<br /></span><span style="color: #0000BB">db_create_table</span><span style="color: #007700">(</span><span style="color: #DD0000">'upgradetest'</span><span style="color: #007700">, array(<br />&nbsp; </span><span style="color: #DD0000">'description' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Stores only one line, the value displayed on the page "hello". Please see the README.txt of this module.'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; array(<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #FF8000">// utid stands for "upgrade test id". If you are storing something else,<br />&nbsp;&nbsp;&nbsp; // like beach balls, you might call your primary field bbid.<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'utid'&nbsp; </span><span style="color: #007700">=&gt; array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'serial'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'unsigned' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'not null' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'description' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Primary Key id (there should be only one).'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp; ),<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'name'&nbsp; </span><span style="color: #007700">=&gt; array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'varchar'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'length' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">255</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'not null' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'description' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The value.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp; ),<br />&nbsp; ),<br />&nbsp; </span><span style="color: #DD0000">'primary key' </span><span style="color: #007700">=&gt; array(</span><span style="color: #DD0000">'utid'</span><span style="color: #007700">),<br />));<br /><br /></span><span style="color: #0000BB">db_insert</span><span style="color: #007700">(</span><span style="color: #DD0000">'upgradetest'</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">fields</span><span style="color: #007700">(array(<br />&nbsp; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">,<br />))<br />-&gt;</span><span style="color: #0000BB">values</span><span style="color: #007700">(array(<br />&nbsp; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'simulating data entered in D6'</span><span style="color: #007700">,<br />))<br />-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>At this point we must simulate that our module (upgradetest) is already enabled, to avoid having Drupal perform the module's new installation procedure. To do this we need to add an entry to the system table telling Drupal that upgrade path is already enabled, but that the schema version is 0, meaning that all update hooks need to be called when upgrading. Let's craft some PHP code with the result, and add it to our drupal-6.upgradetest.database.php file:</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// tell drupal that the module upgradetest is active. This will prevent its<br />// normal installation, so we can test the upgrade path instead.<br /><br /></span><span style="color: #0000BB">db_insert</span><span style="color: #007700">(</span><span style="color: #DD0000">'system'</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">fields</span><span style="color: #007700">(array(<br />&nbsp; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'type'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'status'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'schema_version'</span><span style="color: #007700">,<br />))<br />-&gt;</span><span style="color: #0000BB">values</span><span style="color: #007700">(array(<br />&nbsp; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'upgradetest'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'module'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1'</span><span style="color: #007700">,<br />&nbsp; </span><span style="color: #DD0000">'schema_version' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0'</span><span style="color: #007700">,<br />))<br />-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>Now we can add a test case to our test class in drupal-6.upgradetest.database.php. What we need to test is that our data (in this case "simulating data entered in D6") appears in D7 after the upgrade.</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">public function </span><span style="color: #0000BB">testupgradetestUpgrade</span><span style="color: #007700">() {<br />&nbsp; </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">assertTrue</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">performUpgrade</span><span style="color: #007700">(), </span><span style="color: #0000BB">t</span><span style="color: #007700">(</span><span style="color: #DD0000">'The upgrade was completed successfully.'</span><span style="color: #007700">));<br /><br />&nbsp; </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalGet</span><span style="color: #007700">(</span><span style="color: #DD0000">'hello'</span><span style="color: #007700">);<br />&nbsp; </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">assertText</span><span style="color: #007700">(</span><span style="color: #DD0000">'simulating data entered in D6'</span><span style="color: #007700">, </span><span style="color: #DD0000">'data entered in D6 appears in D7 after the upgrade'</span><span style="color: #007700">);<br /><br />&nbsp; </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">assertFalse</span><span style="color: #007700">(</span><span style="color: #0000BB">db_table_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'upgradetest'</span><span style="color: #007700">), </span><span style="color: #DD0000">'the old upgradetest has been deleted from the db'</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>Now that we have written our test, you can write the actual upgrade hook as you normally would, and test it. See <a href="https://github.com/alberto56/upgradetest/tarball/7.x-2.0">upgradetest-7.x-2.0.tar.gz from github</a> for the result.</p>
+<p>The concept is really very similar when testing the D7-to-D8 site, but we can't use variable_get() to get the variable (because variable_get() no longer exists in D8). Rather we need to query the database directly. <a href="https://github.com/alberto56/upgradetest/tarball/8.x-2.0">The fully functional D8 upgrade test file can be found here</a>.</p>
+<h3>Updates</h3>
+<p>To test updates, we won't use a special class. Rather, we will do the following:</p>
+<ul>
+<li>setUp() your test class as you normally would, but don't install your module just yet.</li>
+<li>Fiddle with the database's system table to simulate the module being already installed and enabled.</li>
+<li>Tweak the database so as to simulate the minor version of your module you want to test.</li>
+<li>Call your update hooks</li>
+<li>Confirm that all went well.</li>
+</ul>
+<p>Let's look at a very simple example: Let's say our 7.x-2.0 is using the variable upgradetest_value (which it is). Let's make 7.x-2.1 use the variable upgradetest_value1 instead.</p>
+<p>Not very realistic, but it's just to get my point accross.</p>
+<p>To see how I tested this please download <a href="https://github.com/alberto56/upgradetest/tarball/7.x-2.1">upgradetest-7.x-2.1.tar.gz from github</a>.</p>
+<h3>Bonus exercices</h3>
+<p>Astute readers will have noticed that the upgrade path from 7.x-2.0 to 8.x-2.0 is working fine (and is tested). However, trying to go from 7.x-2.1 to 8.x-2.0 will result in a broken upgrade path. I'll leave it to the reader to figure out how to fix (and test!) this.</p>
+<p>It might also be interesting to create an updated 7.x-2.2 version with changes to the database, include a test, and make sure 8.x-2.x can be upgrade (and the upgrade tested) regardless of which version of 7.x is used.</p>
+<h3>Conclusion</h3>
+<p>Because I have not found any standard way of doing this in my numerous Google searches, the technique described herein may not be optimal -- I welcome any suggestions and discussion to make it better.</p>
+  </div>
+
+  </div>          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

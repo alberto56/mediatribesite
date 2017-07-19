@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Drupal: Cloner une BD externe sur votre ordi | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 36 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Drupal: Cloner une BD externe sur votre ordi</h2>                                                  <div class="clear-block">
+            <div id="node-90" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 11/06/2013 - 17:14</span>
+  
+    </div>
+
+  <div class="content">
+    <p>Si vous voulez travailler sur une version locale d'un site web, faites ce qui suit:</p>
+<p><div class="codeblock"><code>git clone [chemin-git]<br />cd [répertoire]<br />echo &#039;create database [dbname]&#039; | mysql -u[user] -p[pass]<br />drush si --db-url=mysql://[user]:[pass]@localhost/[dbname] --account-name=root --account-pass=root<br />ssh <a href="mailto:moi@example.com">moi@example.com</a> &quot;drush -r /chemin/vers/drupal sql-dump&quot; &gt; db.sql<br />drush sqlc &lt; db.sql</code></div></p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1120"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1120" class="active">Si vous n&#039;avez pas de mot de</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Wed, 11/06/2013 - 17:28.  </div>
+
+  <div class="content">
+    <p>Si vous n'avez pas de mot de passe mysql, utilisez, par exemple:</p>
+<p>drush si --db-url=mysql://root:@localhost/basededonnees --account-name=root --account-pass=root</p>
+      </div>
+
+  </div>
+<a id="comment-1121"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1121" class="active">si vous ne voyez pas votre</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Wed, 11/06/2013 - 17:40.  </div>
+
+  <div class="content">
+    <p>si vous ne voyez pas votre site, il se peut qu'il y ait un préfixe dans la bd. Pour le savoir faire:</p>
+<p><div class="codeblock"><code>vi db.sql</code></div></p>
+<p>si vous voyez quelque chose comme "abc_actions", votre préfixe est abc_</p>
+<p>vous devez ouvrir sites/default/settings.php et mettre abc_ dans la variable prefix.</p>
+      </div>
+
+  </div>
+<a id="comment-1122"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1122" class="active">Autre point: si vous ne voyez</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Thu, 11/07/2013 - 09:28.  </div>
+
+  <div class="content">
+    <p>Autre point: si vous ne voyez des pages autres que la page d'accueil, il se peut que votre document .htaccess ne soit pas présent (parfois, il ne se trouve pas dans le dépôt git).</p>
+<p>Dans ce cas vous pouvez:</p>
+<p><div class="codeblock"><code>cd ..<br />drush dl<br />cp drupal*/.htaccess [répertore]</code></div></p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

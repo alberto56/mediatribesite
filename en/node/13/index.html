@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Using diff and patch for directories, and managing patches during Drupal upgrades. | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>6 years 27 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Using diff and patch for directories, and managing patches during Drupal upgrades.</h2>                                                  <div class="clear-block">
+            <div id="node-13" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Sun, 11/01/2009 - 15:18</span>
+  
+      <div class="terms terms-inline"><ul class="links inline"><li class="taxonomy_term_1 first last"><a href="../../taxonomy/term/1/index.html" rel="tag" title="">Drupal</a></li>
+</ul></div>
+    </div>
+
+  <div class="content">
+    <p>Background: I was recently making a Drupal site where I needed (as is often the case) a visual text editor along with image- and file-upload capabilities. I tried using the <a href="http://drupal.org/project/wysiwyg">wysiwyg</a> module in conjunction <a href="http://ckeditor.com/download">FCKEditor 2.6.x</a>, which is a good combination for that purpose.</p>
+<p>Since this does not work out of the box, I followed the instructions <a href="http://drupal.org/node/371459#comment-2090156">here</a>. </p>
+<p>This procedure requires modifying files in the Wysiwyg module (residing in sites/all/modules) as well as the FCKEditor library itself (in sites/all/libraries). </p>
+<p>The causes potential problems when the module and library are upgraded. My solution is to use patches. Here is how.</p>
+<ul>
+<li>Put the original file in its place (e.g. site/all/modules/wysiwyg or sites/all/libraries/fckeditor)</li>
+<li>Copy the entire directory (e.g. cp sites/all/modules/wysiwyg sites/all/modules/wysiwyg.patched)</li>
+<li>Make the required changes files in the patched (e.g. wysiwyg.patched/) directory</li>
+<li>I like to make a directory for all my patches on the system (e.g. mkdir patches)</li>
+<li>For each of your patched directories, execute the diff command. Here is an example for the wysiwyg directory. the options "c" and "r" tell the diff program to provide context and apply recursively to subdirectories. Providing context is not required, although the idea here is to be able to apply the patch to upgrades of the code, which might be different than the original, in which case context is very helpful.<br />
+  <div class="codeblock"><code>&nbsp;&nbsp;&nbsp; diff -cr sites/all/modules/wysiwyg/ sites/all/modules/wysiwyg.patched/ &gt; patches/wysiwyg_module_allow_file_uploads.diff<br />&nbsp; </code></div>
+</li>
+<li>Test your patch by executing the patch command, which applies it to the original, in this case "sites/all/modules/wysiwyg", directory. Here is an example with the wysiwyg directory. The "p0" option tells the patch command to apply the patch to the same directory structure as when the patch was created (in this case sites/all/modules/wysiwyg), which makes sense. The default value for "p" (if you don't specify it) tells patch to ignore the directory structure and apply the patch, in this case, to "wysiwyg".<br />
+  <div class="codeblock"><code>&nbsp;&nbsp;&nbsp; patch -p0 &lt; patches/wysiwyg_module_allow_file_uploads.diff<br />&nbsp; </code></div>
+</li>
+<li>You can now get rid of the patched directory</li>
+<li>Next time an upgrade is released for a directory you patched (say, wysiwyg), just back up your old directory, put the new one in its place, and apply the patch with the "patch -p0" command.</li>
+</ul>
+<h3>Resources</h3>
+<ul>
+<li><a href="http://stephenjungels.com/jungels.net/articles/diff-patch-ten-minutes.html">The Ten Minute Guide to diff and patch</a></li>
+<li><a href="http://www.linuxtutorialblog.com/post/introduction-using-diff-and-patch-tutorial">Introduction: Using diff and patch (tutorial)</a></li>
+</ul>
+<p>(note: I sometimes use the <a href="http://drupal.org/project/imce">IMCE</a> module to integrate image uploading with visual editors, which does not require any patching. In this case it was decided to use upload capabilities already integrated into FCKEditor because it is easier for the end user.)</p>
+  </div>
+
+  </div>          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

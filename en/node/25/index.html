@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Adding content (text and images) to a Drupal site via email | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>6 years 27 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Adding content (text and images) to a Drupal site via email</h2>                                                  <div class="clear-block">
+            <div id="node-25" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Thu, 06/10/2010 - 15:17</span>
+  
+      <div class="terms terms-inline"><ul class="links inline"><li class="taxonomy_term_1 first last"><a href="../../taxonomy/term/1/index.html" rel="tag" title="">Drupal</a></li>
+</ul></div>
+    </div>
+
+  <div class="content">
+    <p>In my experience, there are several users who don't feel comfortable using the standard Drupal interface to create content on their website. I've noticed that this is the case with reforestation.net, I site I manage: even though I provide users with accounts and training, almost all users end up sending me their content (including images and text) via email, and I have to upload it myself to the Drupal site. The main reasons cited for not posting content to Drupal are: it's too complicated, connection too slow (especially in Africa and the Caribbean); and it does not work as expected. So much for end-user empowerment!</p>
+<p>The one technology with which all users feel comfortable with is email, so I set about figuring out a way to get users to be able to post content to the site by sending an email (or rather, for now, sending it to me and me forwarding it to a special email account created on the site)</p>
+<p>Here's a small (about 15 min.) video showing how to go about this. Be warned, though: at the time of this writing you have to apply two patches to actually make this work. Hopefully, future versions of the modules we use will be updated</p>
+<p>Some references:</p>
+<ul>
+<li><a href="http://drupal.org/project/mailhandler">mailhandler module</a> which manages email submissions (important: the latest version does not work as of this writing -- you must use version 6.x-1.8)</li>
+<li><a href="http://drupal.org/project/mailsave">mailsave module</a> which manages attachments</li>
+<li><a href="http://drupal.org/node/542836#comment-2055260">patch to fix a bug in mailhandler 1.8 which fetches the same messages more than once</a></li>
+<li><a href="http://drupal.org/node/315381#comment-3074394">patch to make mailsave work with mailhandler 1.8</a></li>
+</ul>
+<p>Troubleshooting:</p>
+<ul>
+<li>There's an <a href="http://drupal.org/node/406348">issue</a> which only occurs on certain servers where you'll get a <strong> warning: imap_open() [function.imap-open]: Couldn't open stream  </strong> error. The solution is to put "/novalidate-cert/tls" in the extra commands section of your mailbox.</li>
+<li>If a user other than user/1 will be using this system, make sure that user has a role with the "convert to imagefield" permission set.</li>
+<li>In my experience, if you get "warning: imap_header() [function.imap-header]: Bad message number", it is because there is no body in the message. This means you need some text before the first separating line ("-----") for your message to go through.</li>
+</ul>
+<p>You will also need cck, imagecache, imagefield, imageapi, filefield</p>
+<object width="400" height="300"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=12467012&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=12467012&server=vimeo.com&show_title=1&show_byline=1&show_portrait=0&color=&fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="400" height="300"></embed></object><p><a href="http://vimeo.com/12467012">Adding content to a Drupal site via email</a> from <a href="http://vimeo.com/user1854727">Albert Albala</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-276"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-276" class="active">thanks!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Fri, 07/09/2010 - 16:05.  </div>
+
+  <div class="content">
+    <p>Excellent.  thank you.  Here are the terminal commands that I issued:</p>
+<p>wget <a href="http://ftp.drupal.org/files/projects/mailhandler-6.x-1.8.tar.gz" title="http://ftp.drupal.org/files/projects/mailhandler-6.x-1.8.tar.gz">http://ftp.drupal.org/files/projects/mailhandler-6.x-1.8.tar.gz</a><br />
+tar -xvf mailhandler-6.x-1.8.tar.gz<br />
+cd mailhandler<br />
+wget <a href="http://drupal.org/files/issues/mailhandler_pop_deletion.patch" title="http://drupal.org/files/issues/mailhandler_pop_deletion.patch">http://drupal.org/files/issues/mailhandler_pop_deletion.patch</a><br />
+patch -p0 &lt; mailhandler_pop_deletion.patch</p>
+<p>wget <a href="http://ftp.drupal.org/files/projects/mailsave-6.x-1.3.tar.gz" title="http://ftp.drupal.org/files/projects/mailsave-6.x-1.3.tar.gz">http://ftp.drupal.org/files/projects/mailsave-6.x-1.3.tar.gz</a><br />
+tar -xvf mailsave-6.x-1.3.tar.gz<br />
+cd mailsave<br />
+wget <a href="http://drupal.org/files/issues/mailsave-315381-32-work-with-mailhandler-6.x-1.8.diff" title="http://drupal.org/files/issues/mailsave-315381-32-work-with-mailhandler-6.x-1.8.diff">http://drupal.org/files/issues/mailsave-315381-32-work-with-mailhandler-...</a><br />
+patch -p0 &lt; mailsave-315381-32-work-with-mailhandler-6.x-1.8.diff</p>
+      </div>
+
+  </div>
+<a id="comment-521"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-521" class="active">Thank you.  I run several</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Sat, 11/12/2011 - 13:42.  </div>
+
+  <div class="content">
+    <p>Thank you.  I run several community sites, this will be very helpful.</p>
+      </div>
+
+  </div>
+<a id="comment-1084"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1084" class="active">Hi I followed the step given</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 07/09/2013 - 17:49.  </div>
+
+  <div class="content">
+    <p>Hi I followed the step given above but my content is not showing, can you help me?</p>
+      </div>
+
+  </div>
+<div class="indented"><a id="comment-1085"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1085" class="active">Hi, the post is 2 1/2 years</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Sat, 07/13/2013 - 21:52.  </div>
+
+  <div class="content">
+    <p>Hi, the post is 2 1/2 years old, and relies on very specific versions of each component. Overall, the procedure is rather fragile and on the site on which I was using it, it also broke down. If anyone finds a way to fix it, please let me know!</p>
+      </div>
+
+  </div>
+</div></div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

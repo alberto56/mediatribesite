@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Procédure pour ajouter un site Drupal à Jenkins | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 32 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Procédure pour ajouter un site Drupal à Jenkins</h2>                                                  <div class="clear-block">
+            <div id="node-93" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 11/27/2013 - 11:04</span>
+  
+    </div>
+
+  <div class="content">
+    <p>Voici ma procédure pour ajouter un projet Drupal à Jenkins</p>
+
+<p>(1) Assurez-vous d'avoir une version locale du site sur Git.</p>
+
+<p>(2) Allez sur votre instance de Jenkins et ajouter un projet de type "free-style software project" pour ce site.</p>
+
+<p>(3) Dans description mettre "Teste la branche master et la met sur URL", où "URL" est un URL propre à Jenkins, selon votre nomenclature, par exemple monsite.jenkins.example.com.</p>
+
+<p>(4) Dans source code management, mettre Git et entrer le répertoire git de votre projet.</p>
+
+<p>Pour que ceci fonctionne, il faut que:</p>
+
+<ul>
+<li>L'utilisateur Jenkins ait accès au répertoire git par clé ssh.</li>
+<li>L'emprunte digitale (fingerprint) du serveur ait été accepté en ligne de commande. Pour ceci vous devez vous connecter au serveur avec l'utilisateur Jenkins en ligne de commande et faire une opération git (par exemple git ls-remote -h moi@example.com:mon_projet HEAD).</li>
+<li>L'extension git de Jenkins doit être installée.</li>
+</ul>
+
+<p>(5) Enregistrer votre projet.</p>
+
+<p>(6) Lancer un build ("Build Now").</p>
+
+<p>(7) Cliquer sur le build, et aller sur Console Output, et noter le chemin de l'espace de travail (Workspace), qui ressemblera à /var/lib/jenkins/workspace/monprojet.</p>
+
+<p>(8) Vous connecter au serveur en ligne de commande avec l'utilisateur Jenkins et aller dans le chemin du Workspace.</p>
+
+<p>(9) Créer une base de données locale pour votre projet</p>
+
+<pre><code>echo 'create database monprojet' | mysql -uuser -ppassword
+</code></pre>
+
+<p>(10) Installer un Drupal de base</p>
+
+<pre><code>drush si --db-url=mysql://user:password@localhost/monprojet -y
+</code></pre>
+
+<p>Si ça refuse d'installer Drupal, il se peut que vous utilisez une distribution comme Acquia, dans lequel cas faites:</p>
+
+<pre><code>drush si acquia --db-url=mysql://user:password@localhost/monprojet -y
+</code></pre>
+
+<p>(11) Mettre le bon URL dans sites/mediatribe.net/settings.php</p>
+
+<p>Ouvrir sites/mediatribe.net/settings.php sur le serveur et trouver la variable "base_url". Y mettre le bon URL pour votre projet selon votre nomenclature, par exemple monsite.jenkins.example.com.</p>
+
+<p>(12) Changer les paramètres du serveur pour que votre site soit accessible sur l'adresse appropriée. Voici un exemple de commande à utiliser, qui dépendra de votre serveur.</p>
+
+<pre><code>SITE=monsite
+URL=$SITE.jenkins.example.com
+WORKSPACE='/var/lib/jenkins/workspace/monsite'
+echo "127.0.0.1 $URL" &gt;&gt; /etc/hosts
+
+echo "&lt;VirtualHost *:80&gt;" &gt;&gt; /etc/httpd/conf.d/vhosts.conf
+echo "  ServerName $URL" &gt;&gt; /etc/httpd/conf.d/vhosts.conf
+echo "  DocumentRoot $WORKSPACE" &gt;&gt; /etc/httpd/conf.d/vhosts.conf
+echo "&lt;/VirtualHost&gt;" &gt;&gt; /etc/httpd/conf.d/vhosts.conf
+
+service httpd restart
+</code></pre>
+
+<p>(13) Aller sur votre URL et assurez-vous de bien voir un site Drupal de base fonctionnel (pas votre site).</p>
+
+<p>En cas de problèmes, référez-vous aux logs php, apache, mysql.</p>
+
+<p>(14) Assurez-vous que les pages internes fonctionnent bien. Sur certaines installations, le document .htaccess est manquant et doit être ajouté.</p>
+
+<p>(15) Vous pouvez maintenant déterminer ce que vous voulez faire à chaque push. Par exemple on peut rouler ces opérations:</p>
+
+<pre><code>drush vset maintenance_mode 1
+drush updb -y
+drush cc all
+drush cron
+drush vset maintenance_mode 0
+drush test-run monsite
+</code></pre>
+
+<p>Essayez ça en ligne de commande pour vous assurer que ça marche, puis ajoutez ce script à votre projet Jenkins (Configure > Add build step > Execute shell).</p>
+
+<p>(16) Vous assurer que votre projet jenkins monitore activement la branche master de git: Build triggers > Poll SCM > "* * * * *" (chaque minute)</p>
+
+<p>(17) À ce stade vous pouvez prendre la base de données du site en production, s'il y a lieu, et la mettre sur Jenkins. Pour ma part je préfère utiliser un <a href="http://dcycleproject.org/blog/44/what-site-deployment-module">module de déploiement</a> si je peux, mais parfois il est pratique de copier la BD de prod. Pour ce faire de votre ordinateur local, faire quelque chose comme:</p>
+
+<pre><code>ssh moi@prod.example.com "drush -r /chemin/vers/drupal/sur/prod sql-dump" &gt; prod.sql
+scp prod.sql moi@jenkins.example.com:~/
+ssh moi@jenkins.example.com "drush -r /var/lib/jenkins/workspace/monprojet sqlc &lt; ~/prod.sql"
+rm prod.sql
+ssh moi@jenkins.example.com "rm ~/prod.sql"
+</code></pre>
+
+<p>Maintenant, lorsqu'un membre de votre équipe poussera en master, Jenkins s'activera et fera tous les tests que vous voulez, puis vous indiquera si tout passe ou s'il y a un problème.</p>
+  </div>
+
+  </div>          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

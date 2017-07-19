@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Setting up wysiwyg with image upload on Drupal | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>6 years 27 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Setting up wysiwyg with image upload on Drupal</h2>                                                  <div class="clear-block">
+            <div id="node-19" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 03/03/2010 - 22:44</span>
+  
+      <div class="terms terms-inline"><ul class="links inline"><li class="taxonomy_term_1 first last"><a href="../../taxonomy/term/1/index.html" rel="tag" title="">Drupal</a></li>
+</ul></div>
+    </div>
+
+  <div class="content">
+    <p>Update May 3, 2010 -- Please see <a href="index.html#comment-249">the first comment, below</a>. Some of the hacks in this article are outdated. Please proceed carefully and report your results here!
+</p>
+<div style="color:white;background:red;padding:20px;"><strong>Warning: this will take you at least an hour and if you make even the slightest mistake, it won't work!</strong>
+<p><strong>Please try this on a test site to make sure it suits your needs!</strong></p>
+<p><strong>Related issues: </strong></p>
+<ul>
+<li>Doesn't work with themes with dark backgrounds: see http://drupal.org/node/732048</li>
+<li>When you upload two files with the same name, you get an annoying "this file already exists" message (it works though).</li>
+<li>Issues have been reported with accented (foreign) characters in the names of uploaded files. As a rule of thumb, don't use them for now.</li>
+<li>It's sometimes difficult to select an existing image in the editor and change its properties.</li>
+<li>Haven't tested in IE7 yet.</li>
+<li>Haven't tested in a multilingual environment yet.</li>
+<li>See http://drupal.org/node/732788: this shows all your imagecache presets to the editor, not only relevant ones.</li>
+</ul>
+<p></p></div>
+<p>Installing a WYSIWYG (what-you-see-is-what you get) editor in Drupal 6.x is a convoluted process, with numerous pitfalls. Here is my way of getting it to work with image upload and link upload functionality.</p>
+<p>(Notes: (1) you will find much simpler tutorials, but often they use the IMCE module which my clients often find too complicated to use; (2) this solution uses a patch which is frowned upon by the wysiwyg api maintainers because we allow FCKEditor, and not Drupal modules, to upload files in certain circumstances. We do this because the user experience is much better this way).</p>
+<p>What you need:</p>
+<ul>
+<li><a href="http://drupal.org/project/drush">drush</a> (recommended)</li>
+<li>Intermediate Drupal knowledge</li>
+<li>SSH (shell) access to your server and basic knowledge of the command line.</li>
+<li>Knowledge of <a href="http://drupal.org/patch/apply">how to patch Drupal</a></li>
+</ul>
+<p>First, in the command line, navigate to the root of your Drupal installation in SSH.</p>
+<p>Then, download some modules.</p>
+<ul>
+<li><a href="http://drupal.org/project/wysiwyg">wysiwyg</a> is the API which lets you associate a wysiwyg editor to an input format. This is the most logical way to implement wysiwyg: it doesn't make sense for wysiwyg to be associated with a field output as filtered HTML, say, as all images you enter will disappear.</li>
+<li><a href="http://drupal.org/project/fckeditor">fckeditor</a> implements the visual editor on pages which do not have input formats associated with them, like the contacts settings page and the mission statement. <strong>Important: fckeditor should be in your sites/[your site or default]/modules folder, not sites/all. This is because we want each site in a multisite environment to have its own copy of fckeditor, so that images for different sites don't get mixed up.</strong></li>
+<li><a href="http://drupal.org/project/better_formats">better_formats</a> allows you to have certain users automatically have a non-default input format selected. This is so that anonymous users enter text using the "filtered HTML" input format, and admins or editors use "wysiwyg".</li>
+<li><a href="http://drupal.org/project/imagecache">imagecache</a> allows you to define small, medium, and large sizes for entering images; this is useful because in many cases novice users enter images from a digital camera and you don't want them taking up 3000 pixels of screen real estate.</li>
+<li><a href="http://drupal.org/project/imageapi">imageapi</a>: imagecache relies on this to work.</li>
+<li><a href="http://drupal.org/project/image_resize_filter">image_resize_filter</a> is for those cases where a user chooses to enter an image in the original format (possibly very large and very heavy), then resizing it using the resize handles in fckeditor. This module resizes the images on the server rather than sending a large image to a visitor's computer and then resizing it. With this module enabled, the site will load a lot faster in certain circumstances.</li>
+<li><a href="http://drupal.org/project/htmlcomment">htmlcomment</a> is a solution for a quirk in Drupal. Normally, the initial "less than" (&lt;) symbol before comments is escaped, so that the entire comment becomes visible on the screen. This is often just annoying and users who entered comments just remove them when they realize that the comments appear to the end user. However, with a wysiwyg editor, this problem becomes critical when pasting from Mirosoft Word. What happens is this: many users copy a text they wrote in Microsft Word and paste into the visual text editor. All looks great, but when you save your post, Drupal escapes the comments, and you see a comment, often beginning with "if gte mso 9", on-screen. (Search "if gte mso 9" and you'll find tons of sites which have this problem). With this module enabled, the pages and pages of commented code inserted by Microsoft Word are never escaped so the end-user never sees it.</li>
+</ul>
+<p>Here's the drush code:<br />
+<div class="codeblock"><code>drush dl wysiwyg<br />drush dl fckeditor<br />chmod u+w sites/mediatribe.net<br />mkdir -p sites/mediatribe.net/modules<br />mv sites/all/modules/fckeditor sites/mediatribe.net/modules/<br />chmod u-w sites/mediatribe.net<br />drush dl better_formats<br />drush dl imagecache<br />drush dl imageapi<br />drush dl image_resize_filter<br />drush dl htmlcomment</code></div></p>
+<p>Let's enable a few of these right away (a few notes: (1) with my version of drush I need to perform the following code twice to not get any errors; (2) imageapi_gd is one of the libraries which implement imageapi -- you can also use another one):</p>
+<p><div class="codeblock"><code>drush en wysiwyg -y<br />drush en better_formats -y<br />drush en imagecache_ui -y<br />drush en imageapi_gd -y<br />drush en image_resize_filter -y<br />drush en htmlcomment -y</code></div></p>
+<p>Now, in admin/user/roles, make sure you have a role for users who can access  the wysiwyg editor (I call mine "wysiwyg editor", and we'll use that name for the rest of this article). Create a new user for that role, give him all permissions, log out of your user 1 and log into your new user. This is because user 1 is often treated as a special case, and works a bit differently from other users. (It is a good practice to not use user 1 too much regardless of whether or not you use a wysiwyg editor).</p>
+<p>Now, create a new input format you will associate with your wysiwyg editor. Let's call it 'wysiwyg' and provide any filters you want to it. Make sure the filters are as follows: </p>
+<ul>
+<li>[yes] HTML comments</li>
+<li>[yes] HTML corrector</li>
+<li>[yes] HTML filter</li>
+<li>[yes] Image resize filter</li>
+<li>[no] Line break converter</li>
+<li>[no] Private comments</li>
+<li>[yes] URL filter</li>
+</ul>
+<p>Make sure your new format is available to users with the "wysiwyg editor" role.</p>
+<p>Save, then click the configure tab. Add "&lt;p&gt; &lt;img&gt;" to the list of allowed tags. This prevents your users from entering <font> tags and so on which break your design (this isn't foolproof, though).</font></p>
+<p>Save, then go back to the Input Formats page at admin/settings/filters. Go to the defaults page. Make sure the order of roles in the nodes and blocks groups start with editor (this is because the system checks all roles and stops as soon as a match is found). Now, set the default input format for editor to "wysiwyg". Other roles won't use the wysiwyg editor.</p>
+<p>Save.</p>
+<p>Now, we'll download fckeditor itself (change the following for the latest version of fckeditor if the version has changed).</p>
+<p>Note: download FCKEditor into the site directory (located at sites/mediatribe.net or sites/whatever.your.site.is.com) because we'll need a separate FCKeditor for each site in a multisite environment. This is because FCKEditor defines where uploaded files should go, and we don't want all files in a multisite environment to go to the same place.</p>
+<p><div class="codeblock"><code>chmod u+w sites/mediatribe.net<br />mkdir -p sites/mediatribe.net/libraries<br />chmod -w sites/mediatribe.net<br />cd sites/mediatribe.net/libraries<br />wget http://downloads.sourceforge.net/project/fckeditor/FCKeditor/2.6.6/FCKeditor_2.6.6.zip?use_mirror=cdnetworks-us-1<br />unzip FCKeditor_2.6.6.zip<br />cd ../../../</code></div></p>
+<p>Now we're going to create a profile for wysiwyg:</p>
+<ul>
+<li>Go to admin/settings/wysiwyg/profile</li>
+<li>Next to wysiwyg, select FCKEditor and save</li>
+<li>Click "edit"</li>
+<li>Under buttons and plugins, select Bold, Italic, Align Left, Align Right, Align Center, Source Code, Link, Table, teaser break, bullet list, numbered list (or any other combination you like -- but don't select "image" because we will use another implementation for images).</li>
+<li>Under CSS, select "Editor Default CSS". This is because "Theme CSS" doesn't work with themes which define a background color or image. (There are other issues with themes that define a dark background, though; so if you are experiencing theme-related problems, just choose Garland as an administration theme and check the "use administration theme for editing" checkbox.)</li>
+</ul>
+<p>Go to the "create page" page (node/add/page) and make sure you see the editor. (We're still far from done, but if you don't see the editor go through all the steps above and make sure you didn't skip anything).</p>
+<p>Now, we're going to download the latest version of wysiwyg_imageupload and jquery_ui_dialog. Drush is a <a href="http://drupal.org/node/730370">bit finicky with these</a>, so you might have to include the latest version in your drush command:</p>
+<p><div class="codeblock"><code>drush dl wysiwyg_imageupload<br />drush dl jquery_ui_dialog</code></div></p>
+<p>These require <a href="http://drupal.org/project/jquery_ui">jquery_ui</a> and <a href="http://drupal.org/project/jquery_update">jquery_update</a> 6.x-2.x or above (so make sure you download the right version):</p>
+<p><div class="codeblock"><code>drush dl jquery_ui<br />drush dl jquery_update-6.x-2.x-dev</code></div></p>
+<p>We now need to modify jquery_ui a bit for it to work. This raises the question of what happens during security updates. Because we will be making a few changes to modules during this installation, it is a good idea to create a UPDATE_INSTRUCTIONS.txt document at the root of your Drupal installation as well as a patches_and_modifications directory, as a courtesy to the next person to perform security updates on your Drupal installation.</p>
+<p><div class="codeblock"><code>mkdir -p patches_and_modifications/jquery_ui<br />pico UPDATE_INSTRUCTIONS.txt</code></div></p>
+<p>Just enter "Additional instructions for applying security updates to this Drupal installation" and save it. We'll add instructions there in a minute.</p>
+<p><div class="codeblock"><code>cd patches_and_modifications/jquery_ui</code></div></p>
+<p>Let's download the latest version of jquery_ui 1.7. It is very important that it be version 1.7, or else our image upload system won't work. Here is an example with 1.7.2 (you might want to change the version if a later version is available):</p>
+<p><div class="codeblock"><code>wget http://jquery-ui.googlecode.com/files/jquery-ui-1.7.2.zip<br />unzip jquery-ui-1.7.2.zip<br />mv jquery-ui-1.7.2 jquery.ui<br />cd ../../</code></div></p>
+<p>Now add to UPDATE_INSTRUCTIONS.txt the following point:</p>
+<blockquote><p>
+When updating jquery-ui, move to the root of your drupal installation and:<br />
+<div class="codeblock"><code>cp -r patches_and_modifications/jquery_ui/jquery.ui sites/all/modules/jquery_ui/</code></div>
+</p></blockquote>
+<p>Perform that command now:</p>
+<p><div class="codeblock"><code>cp -r patches_and_modifications/jquery_ui/jquery.ui sites/all/modules/jquery_ui/</code></div></p>
+<p>We now need to move some files from jquery_update to core (this is known as "killing kittens"):</p>
+<p>Add to UPDATE_INSTRUCTIONS.txt:</p>
+<blockquote><p>
+When updating core, move to the root of your drupal installation and:<br />
+<div class="codeblock"><code>/bin/cp sites/all/modules/jquery_update/replace/*.js misc/</code></div>
+</p></blockquote>
+<p>You will now perform that command yourself (use /bin/cp rather than cp in order to force your system to overwrite the existing files):</p>
+<p><div class="codeblock"><code>/bin/cp sites/all/modules/jquery_update/replace/*.js misc/</code></div></p>
+<p>Now, enable some modules (for some reason I have to do this twice with the current HEAD version of drush to not get any errors):</p>
+<p><div class="codeblock"><code>drush en fckeditor -y<br />drush en wysiwyg_imageupload -y</code></div></p>
+<p>Now, give your editor or super-administrator (depending on which role you are using to perform the installation) all permissions in admin/user/permissions.</p>
+<p>OK, now we are going to create some presets for wysiwyg in imagecache: Go to admin/build/imagecache/add and create a preset called wysiwyg_Small_100 with a width of 100. Repeat the process with wysiwyg_Medium_200 and wysiwyg_Large_350, as well as wysiwyg_Original (no action).</p>
+<p>Now, go to admin/settings/wysiwyg/profile and edit your profile for wysiwyg, and check the checkbox for Image uploading.</p>
+<p>We will need to apply a patch for this (and the Drupal-break) functionality to webkit browsers such as Chrome and Safari. </p>
+<p><div class="codeblock"><code>cd patches_and_modifications/<br />wget http://drupal.org/files/issues/wysiwyg-commands-497654.patch<br />cd ..</code></div></p>
+<p>Add to UPDATE_INSTRUCTIONS.txt:</p>
+<blockquote><p>
+For each patch, do the following: the patch should contain the affected module name as well as an URL or a number. If it's a number, it corresponds to http://drupal.org/project/[put number here]. When the module (or core) is updated, check the URL or patch page and determine whether you should apply the patch. If so, apply it like so (example given with a wysiwyg patch):<br />
+<div class="codeblock"><code>cd sites/all/modules/wysiwyg<br />patch -p0 &lt; ../../../../patches_and_modifications/wysiwyg-commands-497654.patch</code></div><br />
+It is important that the patch apply, even with fuzz. If not, you might be breaking some of your site's functionality and you might want to revert to the previous version of your site.
+</p></blockquote>
+<p>You will now patch wysiwyg as described above:</p>
+<p><div class="codeblock"><code>cd sites/all/modules/wysiwyg<br />patch -p0 &lt; ../../../../patches_and_modifications/wysiwyg-commands-497654.patch<br />cd ../../../../</code></div></p>
+<p>Clear your browser's cache and Drupal's cache, and the upload function should work in Safari and other webkit browsers.</p>
+<p>We now will make a wysiwyg editor work with the mission statement and contact form intro (which don't use input formats). For this we need to download FCKeditor library inside the fckeditor module. While it is tempting to put the fckeditor library in sites/mediatribe.net/libraries and create a symlink, this doesn't work because FCKEditor module expects FCKLibrary to inside the module folder. If not, it will work but give you an ugly error message in admin/reports/status:</p>
+<p><div class="codeblock"><code>rm -rf sites/mediatribe.net/modules/fckeditor/fckeditor<br />cd sites/mediatribe.net/modules/fckeditor/<br />wget http://downloads.sourceforge.net/project/fckeditor/FCKeditor/2.6.6/FCKeditor_2.6.6.zip?use_mirror=cdnetworks-us-1<br />unzip FCKeditor_2.6.6.zip<br />cd ../../../../</code></div></p>
+<p>Add the above code to your UPDATE_INSTRUCTIONS.txt file under the section "updating fckeditor script in fckeditor module (not in sites/mediatribe.net/libraries)"</p>
+<p>Now go to admin/settings/fckeditor/editg (make sure you have the right permissions if you see "access denied"), set visibility settings to "include", erase everything in all text fields, and include the elements  admin/build/contact/settings.edit-contact-form-information and admin/settings/site-information.edit-site-mission</p>
+<p>Save.</p>
+<p>Now edit the default profile, in basic setup, check the "editor" role. In the style and template section, choose "editor default" so it's compatible with themes with dark backgrounds. Under "file browser settings" select yes on "allow quick uploads".</p>
+<p>Now remove the administer FCKEditor permission from your editor role so you won't see the "The ID for excluding or including this element" message below each field.</p>
+<p>We still need to add some patches to FCKEditor and wysiwyg module for this to work. The patches are available here:</p>
+<ul>
+<li><a href="../../../sites/mediatribe.net/files/mediatribe.net_en_node_19-fckeditor_library_allow_uploads.patch">FCKEditor Library patch</a></li>
+<li><a href="../../../sites/mediatribe.net/files/mediatribe.net_en_node_19-fckeditor-lib-in-module_allow_uploads.patch">FCKEditor Library within module patch</a></li>
+<li><a href="../../../sites/mediatribe.net/files/mediatribe.net_en_node_19-wysiwyg_module_allow_uploads.patch">wysiwyg patch</a></li>
+</ul>
+<p>We'll need to execute the following (UPDATE_INSTRUCTIONS.txt already tells updators to refer to patches so we don't need to update that). Note that your system will probably ask you which file you want to patch, just find the corresponding path.</p>
+<p><div class="codeblock"><code>cd patches_and_modifications<br />wget http://mediatribe.net/sites/mediatribe.net/files/mediatribe.net_en_node_19-wysiwyg_module_allow_uploads.patch<br />wget http://mediatribe.net/sites/mediatribe.net/files/mediatribe.net_en_node_19-fckeditor_library_allow_uploads.patch<br />wget http://mediatribe.net/sites/mediatribe.net/files/mediatribe.net_en_node_19-fckeditor-lib-in-module_allow_uploads.patch<br />cd ..<br />chmod u+w sites/mediatribe.net<br />patch &lt; patches_and_modifications/mediatribe.net_en_node_19-fckeditor_library_allow_uploads.patch<br />patch &lt; patches_and_modifications/mediatribe.net_en_node_19-fckeditor-lib-in-module_allow_uploads.patch<br />patch &lt; patches_and_modifications/mediatribe.net_en_node_19-wysiwyg_module_allow_uploads.patch<br />chmod -w sites/mediatribe.net</code></div></p>
+<p>Now, uncomment the cookie domain in settings.php and put your domain name there:</p>
+<p><div class="codeblock"><code>chmod u+w sites/mediatribe.net/settings.php<br />pico sites/mediatribe.net/settings.php</code></div><br />
+...edit your cookie domain...<br />
+<div class="codeblock"><code>chmod -w sites/mediatribe.net/settings.php</code></div></p>
+<p>People who use a wysiwyg editor will invariably put in an image aligned left (or float left), and some text next to it which has a smaller height than the image. This will cause the rest of the content on the page to move next to the image. To prevent this, we will need to add some CSS. If you are using a custom theme, you can do it in there, or you can use the css_injector module if you don't want to modify your theme.</p>
+<p><div class="codeblock"><code>drush dl css_injector<br />drush en css_injector -y</code></div></p>
+<p>Give your user permission to use css_injector, then head over to admin/settings/css_injector and add a new rule. In it, add the following (this might change on which modules you're using and the active theme -- the idea is that whatever class encloses content generated with the wysiwyg editor must be float left width 100%). Also, most people won't be satisfied with the default margin to the left of right of the images, so increase that:</p>
+<p><div class="codeblock"><code>#content #mission, .view-og-ghp-ron /* for organic groups */, #content .node /* etc. etc. depending on your site */ {<br />&nbsp; float:left;<br />&nbsp; width:100%;<br />}<br />.imgupl_floating_left {<br />&nbsp; margin-right:13px;<br />}<br />.imgupl_floating_right {<br />&nbsp; margin-left:13px;<br />}</code></div></p>
+<p>Finally, make sure your editor user has the permission to use "wysiwyg image upload."</p>
+<p>Now let's flush Drupal's caches, run cron and flush your browser's cache. </p>
+<p><div class="codeblock"><code>drush cache clear<br />drush cron</code></div></p>
+<p>It should work!</p>
+<p>My UPDATE_INSTRUCTIONS.txt file looks like:<br />
+<div class="codeblock"><code>Additional instructions for applying security updates to this Drupal <br />installation<br /><br />When updating jquery-ui, move to the root of your drupal installation and:<br />cp -r patches_and_modifications/jquery_ui/jquery.ui <br />sites/all/modules/jquery_ui/<br /><br />When updating core, move to the root of your drupal installation and:<br />/bin/cp sites/all/modules/jquery_update/replace/*.js misc/<br /><br />For each patch, do the following: the patch should contain the affected module <br />name as well as an URL or a number. If it&#039;s a number, it corresponds to <br />http://drupal.org/project/[put number here]. When the module (or core) is <br />updated, check the URL or patch page and determine whether you should apply the <br />patch. If so, apply it like so (example given with a wysiwyg patch):<br />cd sites/all/modules/wysiwyg<br />patch -p0 &lt; ../../../../patches_and_modifications/wysiwyg-commands-497654.patch<br /><br />It is important that the patch apply, even with fuzz. If not, you might be <br />breaking some of your site&#039;s functionality and you might want to revert to the <br />previous version of your site.<br /><br />updating fckeditor script in fckeditor module (not in <br />sites/mediatribe.net/libraries)<br /><br />rm -rf sites/mediatribe.net/modules/fckeditor/fckeditor<br />cd sites/mediatribe.net/modules/fckeditor/<br />wget http://downloads.sourceforge.net/project/fckeditor/FCKeditor/2.6.6/FCKeditor_2.6.6.zip?use_mirror=cdnetworks-us-1<br />unzip FCKeditor_2.6.6.zip<br />cd ../../../../</code></div></p>
+<p>(To do: allow entering HTML (youtube embedded), and paypal.)</p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-249"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-249" class="active">Long article - good work!</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Sun, 03/21/2010 - 21:22.  </div>
+
+  <div class="content">
+    <p>Thanks for writing about my module wysiwyg_imageupload. I would have some hints and additions:</p>
+<p> - you dont need to add the version to drush downlaods, that issue is fixed<br />
+ - You did not mention that it needs at least one imageAPI (gd /imagemagick) to be activated. Otherwise it wont work<br />
+ - there are some incompatibilities with jquery_update dev and jquery_ui 1.7 with some modules(panel_tabs, lightbox2, tabs). Please look at the <a href="http://drupal.org/project/wysiwyg_imageupload" title="http://drupal.org/project/wysiwyg_imageupload">http://drupal.org/project/wysiwyg_imageupload</a> project page for a description how to resolved them (look for he incompetibiliers section)<br />
+- WYSIWYG -<br />
+ - the the new WYSIWYG 6--2.1 fixes nearly all bugs you patched here. So the installation is much easier now</p>
+      </div>
+
+  </div>
+<div class="indented"><a id="comment-250"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-250" class="active">Thanks for your comments --</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Mon, 05/03/2010 - 15:07.  </div>
+
+  <div class="content">
+    <p>Thanks for your comments -- I've added a link to your comments at the beginning of the article.</p>
+      </div>
+
+  </div>
+</div><a id="comment-403"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-403" class="active">Thanks for yor article.</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Fri, 06/24/2011 - 07:51.  </div>
+
+  <div class="content">
+    <p>Thanks for yor article. Please check this plugin <a href="http://ckuploader.com/" title="http://ckuploader.com/">http://ckuploader.com/</a></p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xml:base="http://mediatribe.net"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+ <title>mediatribe.net - Drupal</title>
+ <link>http://mediatribe.net/en/taxonomy/term/1/0</link>
+ <description></description>
+ <language>en</language>
+<item>
+ <title>A hosting platform -- the end of an experiment</title>
+ <link>http://mediatribe.net/en/node/29</link>
+ <description>&lt;p&gt;Last year we launched a beta version of Qumbia, a platform for creating Drupal sites easily. Today we are definitely shutting it down. I&#039;ll attempt to explain how it worked, why we&#039;re shutting it down, and what will replace it.&lt;/p&gt;
+&lt;p&gt;Here&#039;s how it worked:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;one &quot;master&quot; site, with all the basic functionalities you&#039;d want in a basic website (wysiwyg editing, captcha, blog, events, store etc.) was kept up to date. &lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/29&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/29#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/8">Aegir</category>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <pubDate>Wed, 29 Sep 2010 14:22:06 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">29 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Displaying the total number of rows in a view</title>
+ <link>http://mediatribe.net/en/node/27</link>
+ <description>&lt;p&gt;Put a pager, make sure your items to display is not set to unlimited, and put this in your header or footer:&lt;br /&gt;
+&lt;div class=&quot;codeblock&quot;&gt;&lt;code&gt;&lt;span style=&quot;color: #000000&quot;&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;&amp;lt;?php&lt;br /&gt; $view &lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;= &lt;/span&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;views_get_current_view&lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;();&lt;br /&gt;print &lt;/span&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;$view&lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;total_rows &lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;. &lt;/span&gt;&lt;span style=&quot;color: #DD0000&quot;&gt;&#039; &#039; &lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;. &lt;/span&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;t&lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #DD0000&quot;&gt;&#039;items in this category&#039;&lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;); &lt;br /&gt;&lt;/span&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+ <comments>http://mediatribe.net/en/node/27#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <pubDate>Sat, 26 Jun 2010 22:29:28 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">27 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Adding content (text and images) to a Drupal site via email</title>
+ <link>http://mediatribe.net/en/node/25</link>
+ <description>&lt;p&gt;In my experience, there are several users who don&#039;t feel comfortable using the standard Drupal interface to create content on their website. I&#039;ve noticed that this is the case with reforestation.net, I site I manage: even though I provide users with accounts and training, almost all users end up sending me their content (including images and text) via email, and I have to upload it myself to the Drupal site. The main reasons cited for not posting content to Drupal are: it&#039;s too complicated, connection too slow (especially in Africa and the Caribbean); and it does not work as expected.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/25&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/25#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <pubDate>Thu, 10 Jun 2010 19:17:50 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">25 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Creating actions for use with views bulk operations</title>
+ <link>http://mediatribe.net/en/node/24</link>
+ <description>&lt;p&gt;You can combine &lt;a href=&quot;http://drupal.org/project/views_bulk_operations&quot;&gt;Views bulk operations&lt;/a&gt; with your own code to make powerful actions which can be applied to several nodes at the time.&lt;/p&gt;
+&lt;p&gt;Here is some sample code to create an action:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&lt;br /&gt;
+  /* describe your action(s) */&lt;br /&gt;
+function mymodule_action_info() {&lt;br /&gt;
+  return array(&lt;br /&gt;
+    &#039;mymodule_action_callback&#039; =&amp;gt; array(&lt;br /&gt;
+       &#039;type&#039; =&amp;gt; &#039;node&#039;,&lt;br /&gt;
+       &#039;description&#039; =&amp;gt; t(&#039;My action description.&#039;),&lt;br /&gt;
+       &#039;configurable&#039; =&amp;gt; FALSE,&lt;br /&gt;
+      )&lt;br /&gt;
+    );&lt;br /&gt;
+}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;function mymodule_action_callback(&amp;amp;$node, $context) {&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/24&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/24#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <pubDate>Wed, 05 May 2010 15:48:43 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">24 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Displaying a block with a field from the current node using Views 2 and Drupal 6</title>
+ <link>http://mediatribe.net/en/node/21</link>
+ <description>&lt;p&gt;I have a CCK field with an image on my page nodes. I want to display a block with the CCK field value on its related node, but nothing on non-pages.&lt;/p&gt;
+&lt;p&gt;This often works in the views preview, but not on the actual page. This was driving me nuts and I spent a few hours finding this solution:&lt;/p&gt;
+&lt;p&gt;Create view with&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Filter: node nid &amp;gt; 0&lt;/li&gt;
+&lt;li&gt;Argument: node nid, Action to take if argument is not present: Provide default argument: node nid from URL; validator: basic. Action to take if does not validate: Hide view&lt;/li&gt;
+&lt;li&gt;Create a new block display and you&#039;re done!&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+ <comments>http://mediatribe.net/en/node/21#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <category domain="http://mediatribe.net/en/taxonomy/term/6">Views</category>
+ <pubDate>Mon, 08 Mar 2010 19:45:49 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">21 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Setting up wysiwyg with image upload on Drupal</title>
+ <link>http://mediatribe.net/en/node/19</link>
+ <description>&lt;p&gt;Update May 3, 2010 -- Please see &lt;a href=&quot;http://mediatribe.net/en/node/19#comment-249&quot;&gt;the first comment, below&lt;/a&gt;. Some of the hacks in this article are outdated. Please proceed carefully and report your results here!
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/19&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/19#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <pubDate>Thu, 04 Mar 2010 02:44:40 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">19 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Using diff and patch for directories, and managing patches during Drupal upgrades.</title>
+ <link>http://mediatribe.net/en/node/13</link>
+ <description>&lt;p&gt;Background: I was recently making a Drupal site where I needed (as is often the case) a visual text editor along with image- and file-upload capabilities. I tried using the &lt;a href=&quot;http://drupal.org/project/wysiwyg&quot;&gt;wysiwyg&lt;/a&gt; module in conjunction &lt;a href=&quot;http://ckeditor.com/download&quot;&gt;FCKEditor 2.6.x&lt;/a&gt;, which is a good combination for that purpose.&lt;/p&gt;
+&lt;p&gt;Since this does not work out of the box, I followed the instructions &lt;a href=&quot;http://drupal.org/node/371459#comment-2090156&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/13&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/13#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <pubDate>Sun, 01 Nov 2009 19:18:58 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">13 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Setting up Cron with Drupal 6 and cPanel</title>
+ <link>http://mediatribe.net/en/node/12</link>
+ <description>&lt;p&gt;If you have a drupal site on a cPanel account, you can set up cron in cPanel. Here is how:&lt;/p&gt;
+&lt;p&gt;(1) Your site is, say, example.com&lt;br /&gt;
+(2) Log into cPanel (example.com/cpanel)&lt;br /&gt;
+(3) Go to cron jobs &amp;gt; standard&lt;br /&gt;
+(4) Enter the following code in your cron: &lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;codeblock&quot;&gt;&lt;code&gt;/usr/bin/lynx -source http://example.com/cron.php&lt;/code&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;(replace example.com with your actual website)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/12&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/12#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/4">cPanel</category>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <category domain="http://mediatribe.net/en/taxonomy/term/3">procedures</category>
+ <pubDate>Thu, 22 Oct 2009 00:12:54 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">12 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Language Switcher Block: Not displaying the active language in Drupal 6</title>
+ <link>http://mediatribe.net/en/node/1</link>
+ <description>&lt;p&gt;Most of our clients have bilingual (French and English) websites. The Language Switcher Block is a great way to switch between languages, but we often don&#039;t want to display the active language. For example, on a French-language page, we want to have a link to English (not French and English).&lt;/p&gt;
+&lt;p&gt;Our solution is to add the following css either to your theme, or, if you are using a contrib or core theme, to &lt;a href=&quot;http://drupal.org/project/css_injector&quot;&gt;css injector&lt;/a&gt;. (Messing with a core or contrib theme will cause your changes to be lost during upgrades):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/en/node/1&quot; target=&quot;_blank&quot;&gt;read more&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/en/node/1#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <category domain="http://mediatribe.net/en/taxonomy/term/2">Multilingual</category>
+ <pubDate>Thu, 15 Oct 2009 18:30:44 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">1 at http://mediatribe.net</guid>
+</item>
+</channel>
+</rss>
+
+<!-- Localized -->

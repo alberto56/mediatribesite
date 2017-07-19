@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xml:base="http://mediatribe.net"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+ <title>mediatribe.net - Drupal</title>
+ <link>http://mediatribe.net/fr/taxonomy/term/1/0</link>
+ <description></description>
+ <language>fr</language>
+<item>
+ <title>Adding content (text and images) to a Drupal site via email</title>
+ <link>http://mediatribe.net/fr/node/25</link>
+ <description>&lt;p&gt;In my experience, there are several users who don&#039;t feel comfortable using the standard Drupal interface to create content on their website. I&#039;ve noticed that this is the case with reforestation.net, I site I manage: even though I provide users with accounts and training, almost all users end up sending me their content (including images and text) via email, and I have to upload it myself to the Drupal site. The main reasons cited for not posting content to Drupal are: it&#039;s too complicated, connection too slow (especially in Africa and the Caribbean); and it does not work as expected.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/fr/node/25&quot; target=&quot;_blank&quot;&gt;en lire plus&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/fr/node/25#comments</comments>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/1">Drupal</category>
+ <pubDate>Thu, 10 Jun 2010 19:17:50 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">25 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Creating actions for use with views bulk operations</title>
+ <link>http://mediatribe.net/fr/node/24</link>
+ <description>&lt;p&gt;You can combine &lt;a href=&quot;http://drupal.org/project/views_bulk_operations&quot;&gt;Views bulk operations&lt;/a&gt; with your own code to make powerful actions which can be applied to several nodes at the time.&lt;/p&gt;
+&lt;p&gt;Here is some sample code to create an action:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&lt;br /&gt;
+  /* describe your action(s) */&lt;br /&gt;
+function mymodule_action_info() {&lt;br /&gt;
+  return array(&lt;br /&gt;
+    &#039;mymodule_action_callback&#039; =&amp;gt; array(&lt;br /&gt;
+       &#039;type&#039; =&amp;gt; &#039;node&#039;,&lt;br /&gt;
+       &#039;description&#039; =&amp;gt; t(&#039;My action description.&#039;),&lt;br /&gt;
+       &#039;configurable&#039; =&amp;gt; FALSE,&lt;br /&gt;
+      )&lt;br /&gt;
+    );&lt;br /&gt;
+}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;function mymodule_action_callback(&amp;amp;$node, $context) {&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/fr/node/24&quot; target=&quot;_blank&quot;&gt;en lire plus&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/fr/node/24#comments</comments>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/1">Drupal</category>
+ <pubDate>Wed, 05 May 2010 15:48:43 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">24 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Displaying a block with a field from the current node using Views 2 and Drupal 6</title>
+ <link>http://mediatribe.net/fr/node/21</link>
+ <description>&lt;p&gt;I have a CCK field with an image on my page nodes. I want to display a block with the CCK field value on its related node, but nothing on non-pages.&lt;/p&gt;
+&lt;p&gt;This often works in the views preview, but not on the actual page. This was driving me nuts and I spent a few hours finding this solution:&lt;/p&gt;
+&lt;p&gt;Create view with&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Filter: node nid &amp;gt; 0&lt;/li&gt;
+&lt;li&gt;Argument: node nid, Action to take if argument is not present: Provide default argument: node nid from URL; validator: basic. Action to take if does not validate: Hide view&lt;/li&gt;
+&lt;li&gt;Create a new block display and you&#039;re done!&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+ <comments>http://mediatribe.net/fr/node/21#comments</comments>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/1">Drupal</category>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/6">Views</category>
+ <pubDate>Mon, 08 Mar 2010 19:45:49 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">21 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Setting up wysiwyg with image upload on Drupal</title>
+ <link>http://mediatribe.net/fr/node/19</link>
+ <description>&lt;p&gt;Update May 3, 2010 -- Please see &lt;a href=&quot;http://mediatribe.net/en/node/19#comment-249&quot;&gt;the first comment, below&lt;/a&gt;. Some of the hacks in this article are outdated. Please proceed carefully and report your results here!
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/fr/node/19&quot; target=&quot;_blank&quot;&gt;en lire plus&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/fr/node/19#comments</comments>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/1">Drupal</category>
+ <pubDate>Thu, 04 Mar 2010 02:44:40 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">19 at http://mediatribe.net</guid>
+</item>
+<item>
+ <title>Bloc de sélecteur de langue dans Drupal: Ne pas afficher la langue active</title>
+ <link>http://mediatribe.net/fr/node/14</link>
+ <description>&lt;p&gt;La plupart de nos clients ont un site bilingue (français et anglais). Le bloc &quot;sélecteur de langue&quot; (Language Switcher) est une bonne façon de passer d&#039;une langue à l&#039;autre, mais souvent nous ne voulons pas afficher la langue courante. Par exemple, sur une page en français, nous voulons un lien vers le contenu en anglais, mais pas de lien &quot;français&quot;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mediatribe.net/fr/node/14&quot; target=&quot;_blank&quot;&gt;en lire plus&lt;/a&gt;&lt;/p&gt;</description>
+ <comments>http://mediatribe.net/fr/node/14#comments</comments>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/1">Drupal</category>
+ <category domain="http://mediatribe.net/fr/taxonomy/term/5">multilingue</category>
+ <pubDate>Sun, 01 Nov 2009 19:30:40 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">14 at http://mediatribe.net</guid>
+</item>
+</channel>
+</rss>
+
+<!-- Localized -->

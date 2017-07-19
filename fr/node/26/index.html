@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>how to upgrade a module to drupal 7  | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>6 years 27 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>how to upgrade a module to drupal 7 </h2>                                                  <div class="clear-block">
+            <div id="node-26" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Sat, 06/26/2010 - 17:03</span>
+  
+      <div class="terms terms-inline"><ul class="links inline"><li class="taxonomy_term_7 first last"><a href="../../taxonomy/term/7/index.html" rel="tag" title="">drupal development</a></li>
+</ul></div>
+    </div>
+
+  <div class="content">
+    <p>Here are some step-by-step instructions on how I upgrade modules from d6 to d7:</p>
+<p>drush dl coder<br />
+drush dl grammar_parser<br />
+drush en coder_upgrade</p>
+<p>put the latest 6.x version of the module into sites/mediatribe.net/files/coder_upgrade/old</p>
+<p>go to admin/config/development/coder/upgrade</p>
+<p>click the checkbox next to the name of the module you are upgrading to d7</p>
+<p>click convert files</p>
+<p>make sure there are no error messages</p>
+<p>click on the module name</p>
+<p>now you are looking at the patch</p>
+<p>get the latest 6.x CVS version of the module into sites/all/modules</p>
+<p>manually copy all the files from sites/mediatribe.net/files/coder_upgrade/new/the_module/ to sites/all/modules/the_module/</p>
+<p>enable your module</p>
+<p>test it to make sure it works, and make any necesssary changes</p>
+<p>cd into your module directory</p>
+<p>cvs diff -up &gt; patch.patch</p>
+<p>move patch.patch out of the module directory</p>
+<p>move the module directory to a safe place</p>
+<p>download a new copy of the latest version of the module</p>
+<p>apply your patch to make sure it works</p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1157"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1157" class="active">While executing `drush en</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 05/01/2014 - 12:43.  </div>
+
+  <div class="content">
+    <p>While executing `drush en coder_upgrade`, you may get an error like this:</p>
+<p><div class="codeblock"><code>No release history was found for the requested project (gplib).<br />Module coder_upgrade cannot be enabled because it depends on the following modules which could not be found: gplib</code></div></p>
+<p>This is confusing because the module is called "grammar_parser_lib" and the required library is "grammar_parser". In order to solve the error, do this after downloading coder:</p>
+<p>1- Install <a href="http://drupal.org/project/grammar_parser_lib" title="http://drupal.org/project/grammar_parser_lib">http://drupal.org/project/grammar_parser_lib</a> (the Grammar Parser Lib module) to /sites/all/modules (as a module).</p>
+<p>2- Install <a href="http://drupal.org/project/grammar_parser" title="http://drupal.org/project/grammar_parser">http://drupal.org/project/grammar_parser</a> (the Grammer Parser, a mixed-use project) to /sites/all/libraries (as a library). You will need the Libraries module enabled.</p>
+<p>Also, nothe that you will need the PHP_CodeSniffer Pear library. To check if it's installed, run:</p>
+<p><div class="codeblock"><code>pear list</code></div></p>
+<p>If not, just execute:</p>
+<p><div class="codeblock"><code>sudo pear install PHP_CodeSniffer</code></div></p>
+<p>After this, you should be able to complete the rest of the guide.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Drupal: Use module_load_include(), not require_once. Here is why | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 43 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Drupal: Use module_load_include(), not require_once. Here is why</h2>                                                  <div class="clear-block">
+            <div id="node-78" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Tue, 09/17/2013 - 12:57</span>
+  
+    </div>
+
+  <div class="content">
+    <p>In Drupal 7, say you are in the module xyz and you want to include xyz.admin.inc., you should always use</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />module_load_include</span><span style="color: #007700">(</span><span style="color: #DD0000">'inc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">, </span><span style="color: #DD0000">'xyz.admin'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>and not:</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require_once </span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">) . </span><span style="color: #DD0000">'/xyz.admin.inc'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>Here is a typical scenario where this breaks your site completely:</p>
+<p>Say you start a project by downloading a bunch of modules to sites/all/modules.</p>
+<p>Eventually, you have <a href="https://drupal.org/project/features">custom features</a>, custom modules and contrib modules all in the same folder.</p>
+<p>It is very common in this case to move modules to three sub-folders, contrib, custom, and features.</p>
+<p>When you do this, Drupal's registry breaks down and you can no longer clear the cache, but the <a href="https://drupal.org/project/registry_rebuild">Registry Rebuild</a> tool does a good job of rebuilding the registry.</p>
+<p>However, rebuilding the registry only works if you don't have require_once directives lying around. These will break your site until you change them with module_load_include()s, rebuild your registry again, and clear your cache.</p>
+<p>Some related Drupal issues I just filed:</p>
+<p><a href="https://drupal.org/node/2091251" title="https://drupal.org/node/2091251">https://drupal.org/node/2091251</a><br />
+<a href="https://drupal.org/node/2091253" title="https://drupal.org/node/2091253">https://drupal.org/node/2091253</a><br />
+<a href="https://drupal.org/node/2091255" title="https://drupal.org/node/2091255">https://drupal.org/node/2091255</a><br />
+<a href="https://drupal.org/node/2091257" title="https://drupal.org/node/2091257">https://drupal.org/node/2091257</a></p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1163"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1163" class="active">How can the problem be solved</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Mon, 05/12/2014 - 00:24.  </div>
+
+  <div class="content">
+    <p>How can the problem be solved in a global context as in <a href="https://drupal.org/node/2091255" title="https://drupal.org/node/2091255">https://drupal.org/node/2091255</a>?</p>
+<p>The <a href="https://api.drupal.org/api/drupal/includes!module.inc/function/module_load_include/7">documentation for module_load_include()</a> says:</p>
+<p><cite>Do not use this function in a global context since it requires Drupal to be fully bootstrapped...</cite></p>
+      </div>
+
+  </div>
+<a id="comment-1164"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1164" class="active">Good point. In the case of</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Mon, 05/12/2014 - 06:29.  </div>
+
+  <div class="content">
+    <p>Good point. In the case of https://drupal.org/node/2091255, I've used the patch for some time with no issue, but still, it should not be done, I agree.</p>
+
+<p>I was looking at the code of many established modules and few actually load external files in a global context. Perhaps it can be avoided entirely by using module_load_include() only in those functions that need it? That, combined with the dependency system and the <a href="http://drupal.stackexchange.com/questions/17621">autoload classes mechanism</a>, might be all you need in your toolbox.</p>
+
+<p>Right now I can't think of a use case where globally loading an external file can't be done with an alternate approach.</p>
+
+<p>For the media module, in <a href="https://drupal.org/node/2091255#comment-8771719">this comment</a>, I documented a possible approach using autoload classes.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

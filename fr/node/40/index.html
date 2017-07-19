@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Using hook_update_n() for to update your Drupal website database | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>4 years 27 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Using hook_update_n() for to update your Drupal website database</h2>                                                  <div class="clear-block">
+            <div id="node-40" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Tue, 05/31/2011 - 09:17</span>
+  
+    </div>
+
+  <div class="content">
+    <p>Note that this article applies primarily to Drupal 6. When developing <a href="http://drupal.org/project/features">features</a> or other modules, I often find myself making changes to the module dependencies or other aspects after my module has first been moved to the staging site. I use hook_update_N() for that. Here's how.</p>
+<h3>Initial install hook</h3>
+<p>Features normally don't do anything to the database, so typically we won't have an implementation of hook_install(), but we can still do stuff like add URL aliases using the install hook.</p>
+<p><a href="http://www.koumbit.org/en/articles/using-hook-update-non-database-related-updates">Read the full story on Koumbit.org</a>.</p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-397"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-397" class="active">The title of this post is a</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 06/01/2011 - 01:05.  </div>
+
+  <div class="content">
+    <p>The title of this post is a bit of a misnomer since you are changing things in the database, but you are using API functions rather than direct queries.  </p>
+<p>Secondly you are making this a bit more complicated than it needs to be, your dependency example can be reduced to:</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">myfeature_update_6001</span><span style="color: #007700">() {<br />&nbsp; </span><span style="color: #0000BB">$return </span><span style="color: #007700">= array();<br />&nbsp; </span><span style="color: #0000BB">$modules </span><span style="color: #007700">= array(</span><span style="color: #DD0000">'module_x'</span><span style="color: #007700">, </span><span style="color: #DD0000">'module_y'</span><span style="color: #007700">); </span><span style="color: #FF8000">// you must also put these modules in your .info file as dependencies.<br /><br />&nbsp; </span><span style="color: #0000BB">drupal_install_modules</span><span style="color: #007700">(</span><span style="color: #0000BB">$modules</span><span style="color: #007700">); </span><span style="color: #FF8000">// note that this is for Drupal 6<br /><br />&nbsp; </span><span style="color: #007700">foreach (</span><span style="color: #0000BB">$modules </span><span style="color: #007700">as </span><span style="color: #0000BB">$module</span><span style="color: #007700">) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$return</span><span style="color: #007700">[] = array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'success' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">module_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$module</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #DD0000">'query' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$module </span><span style="color: #007700">. </span><span style="color: #DD0000">' installed.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp; );<br />&nbsp; }<br /><br />&nbsp; </span><span style="color: #FF8000">// Clear whatever caches are necessary here.<br />&nbsp; </span><span style="color: #0000BB">cache_clear_all</span><span style="color: #007700">(</span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cache'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);<br /><br />&nbsp; return </span><span style="color: #0000BB">$return</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+      </div>
+
+  </div>
+<div class="indented"><a id="comment-398"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-398" class="active">Of course you are right about</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Wed, 06/01/2011 - 12:18.  </div>
+
+  <div class="content">
+    <p>Of course you are right about the database. Maybe a better way to put it is "operations that don't modify the database schema".</p>
+<p>Also: thanks for the more concise way of writing this.</p>
+<p>Cheers,</p>
+<p>Albert.</p>
+      </div>
+
+  </div>
+</div><a id="comment-1020"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1020" class="active">Exactly what I was looking</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 01/09/2013 - 18:19.  </div>
+
+  <div class="content">
+    <p>Exactly what I was looking for. Thanks.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

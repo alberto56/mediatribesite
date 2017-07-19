@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>How to scan with the lexmark X5495 on Mac OS X 10.6.8 | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>5 years 40 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>How to scan with the lexmark X5495 on Mac OS X 10.6.8</h2>                                                  <div class="clear-block">
+            <div id="node-30" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Mon, 10/04/2010 - 21:08</span>
+  
+    </div>
+
+  <div class="content">
+    <p><strong>Update: 9 Oct 2011. Made some slight changes, still works though.</strong></p>
+<p>I've just spent an hour on the phone with Lexmark because my mom wanted me to scan something on my Lexmark X5495 scanner. This is the second time in two month that I have to call Lexmark in order to get my scanner to work. I'm documenting the solution here -- it worked for me.</p>
+<p>These steps assume you have already set up your printer/scanner to work with your computer and it has already worked in the past, and now it is saying "Application unexpectedly quit" every time you try to scan. This process takes about an hour and assumes you are comfortable using the terminal.</p>
+<p>(1) /Library/Printers/Lexmark/2007/Lexmark\ X5400\ Series/X5400\ Series\ Uninstaller.app</p>
+<p>(2) Click on Uninstall</p>
+<p>(3) sudo rm -rf /Library/Printers/Lexmark</p>
+<p>(4) sudo rm /Library/Printers/PPDs/Contents/Resources/Lexmark*</p>
+<p>(5) sudo rm /Library/Receipts/Lexmark* </p>
+<p>(6) sudo rm /Library/Image\ Capture/TWAIN\ Data\ Sources/Lexmark*</p>
+<p>(7) sudo rm /Library/Application\ Support/Lexmark*</p>
+<p>(8) sudo rm /Library/Preferences/</p>
+<p>(9) remove usb cable</p>
+<p>(10) sudo rm -rf /System/Library/Extensions/LexmarkUSBMerge.kext</p>
+<p>(11) sudo rm ~/Library/Preferences/loginwindow.plist</p>
+<p>(12) sudo rm ~/Library/Preferences/ByHost/com.lexmark*</p>
+<p>(13) Empty trash</p>
+<p>(14) prefs &gt; print and fax &gt; no lexmark</p>
+<p>(15) restart the computer</p>
+<p>(16) Lexmark has deleted this driver from its website as of October 2011. You can <a href="../../../sites/mediatribe.net/files/X5400SeriesWebInstaller1.0.1.dmg_.zip">find it here</a>, or else through an internet search (it has been deleted from many sites, but it still can be found. Let me suggets keeping a copy for next time you need to scan something).</p>
+<p>(17) Go through the install process.</p>
+<p>(18) In Lexmark setup assistant, say "My printer is already set up"</p>
+<p>(19) plug in the printer (to power and your computer) and scan for printers until you find your printer. (your printer should be on and in copy mode)</p>
+<p>(19-a) you'll get a dialog asking you to download software for<br />
+x5495, click yes.</p>
+<p>(19-b) search your system for an application called Lexmark X5400 Series Center, and launch it.</p>
+<p>(19-c) (try scanning -- if it still doesn't work continue down the list.</p>
+<p>(20) sudo rm /private/var/log/install.log.*.bz2 </p>
+<p>(21) sudo rm /private/var/log/system.log.*.bz2</p>
+<p>(22) repeat steps (1) to (19)</p>
+<p>(23) repair disk permissions using Disk Utility</p>
+<p>(24) resart the computer</p>
+<p>(25) install, again, the driver you previously downloaded.</p>
+<p>If you still are getting the quit unexpectedly message, carefully recycle your all-in-one lexmark center where facilities exist.</p>
+<p>Source: 1-800-Lexmark Ref. 1-3520974436 (4 Oct 2010)</p>
+<div class="field field-type-filefield field-field-files">
+      <div class="field-label">Fichiers:&nbsp;</div>
+    <div class="field-items">
+            <div class="field-item odd">
+                    <div class="filefield-file"><img class="filefield-icon field-icon-application-zip"  alt="application/zip icon" src="../../../sites/all/modules/contrib/filefield/icons/package-x-generic.png" /><a href="../../../sites/mediatribe.net/files/X5400SeriesWebInstaller1.0.1.dmg_.zip" type="application/zip; length=18392819">X5400SeriesWebInstaller1.0.1.dmg_.zip</a></div>        </div>
+        </div>
+</div>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-421"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-421" class="active">You are a savior! Getting</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Mon, 07/25/2011 - 16:58.  </div>
+
+  <div class="content">
+    <p>You are a savior! Getting help from these people was like pulling teeth</p>
+      </div>
+
+  </div>
+<a id="comment-1036"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1036" class="active">I lost my manual for this</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 02/19/2013 - 12:51.  </div>
+
+  <div class="content">
+    <p>I lost my manual for this scanner and needed this information quite quickly to scan some important documents in to electronic format.</p>
+<p>Thanks for this</p>
+<p>Cheers</p>
+<p>Carl<br />
+<a href="http://www.thescannershop.com/" title="http://www.thescannershop.com/">http://www.thescannershop.com/</a></p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

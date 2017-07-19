@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Using limit and stop sell orders for stocks | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>39 weeks 6 days</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Using limit and stop sell orders for stocks</h2>                                                  <div class="clear-block">
+            <div id="node-111" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by root on Wed, 03/23/2016 - 10:31</span>
+  
+    </div>
+
+  <div class="content">
+    <p>If it is May 1st and I have $1000 to invest, and after due diligence, I like a stock which sells for $99, I might buy 10 of them at the market price and pay $10 for the commission. Assuming the stock has good volume and I end up getting it for $99, I will end up with stock worth a total of $990. (This technique will not work for stocks which do not have good volume because the actual sale price will be very different from the market price. I am not a sophisticated investor so I stick with stocks with large volume.)</p>
+
+<p>Because of human psychology, I now face two risks:</p>
+
+<ul>
+<li><em>Greed</em>: if my stock rises to, say, $110, I might convince myself to wait <em>just a little longer</em> to make as much money as possible.</li>
+<li><em>The sunk cost fallacy</em>: if my stock falls to, say, $90, I might convince myself to hold on because I'd lose too much if I sell.</li>
+</ul>
+
+<p>In both cases, I'd be wrong and that's that's why most investors lose money.</p>
+
+<p>To reduce these risks, once I own the stock, I will immediately decide my target price and tolerance for potential loss; and I would like to place the following orders which are good for 30 days:</p>
+
+<ul>
+<li>A <em>sell order of type stop</em> at $90. This will guarantee that I cut my losses and the stock will be sold if it falls below $90.</li>
+<li>A <em>sell order of type limit</em> at $110. This will insure me against greed and guarantee that the stock will be sold if rises above $110.</li>
+</ul>
+
+<p>Certain brokerages do not allow these so-called "one-cancels-the-other" or "bracket" orders. Scotia iTrade does not allow them, but <a href="http://help.questrade.com/how-to/iq-edge/order-entry2/bracket-orders">Questrade seems to</a>. See also <a href="http://money.stackexchange.com/questions/71039/why-cant-i-place-a-stop-sell-order-and-a-limit-sell-order-for-the-same-shares">this StackExchange thread</a>.</p>
+
+<p>If I check my portfolio every month, then on June 1st one of these scenarios will have played out:</p>
+
+<ul>
+<li>The stock has lost value and triggered the <em>sell order of type stop</em>, in which case I'll wind up with $890 after my sell commission.</li>
+<li>The stock has gained value and triggered the <em>sell order of type limit</em>, in which case I'll wind up with $1090 after my sell commission.</li>
+<li>The stock hasn't moved too much, in which case I can decide whether to get rid fo the stock in favor of another one, or to keep it. If I keep it, I'll then place two more stop and limit sell orders good for another month.</li>
+</ul>
+
+<p>More about order types can be found <a href="https://www.youtube.com/watch?v=R7MQsTuBWQ8">on the YouTube video "FRM: Order Types (market, limit, stop, stop-limit)"</a>.</p>
+  </div>
+
+  </div>          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

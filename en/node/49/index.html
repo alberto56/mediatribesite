@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Drupal 7 Simpletest: in your tests, creating users with specifc roles | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>5 years 41 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Drupal 7 Simpletest: in your tests, creating users with specifc roles</h2>                                                  <div class="clear-block">
+            <div id="node-49" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Tue, 10/04/2011 - 12:38</span>
+  
+    </div>
+
+  <div class="content">
+    <p>When creating automated tests in Drupal 7, you can use $this-&gt;drupalCreateUser() to create a user with specific permissions, but what if you want to create a user with a specific role? Here's how to set up a user with the role "administrator", for example within your setUp() method:</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #FF8000">// create a new user with some permissions you need; then log in.<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$perms </span><span style="color: #007700">= </span><span style="color: #0000BB">user_role_permissions</span><span style="color: #007700">(array(</span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">, </span><span style="color: #0000BB">user_roles</span><span style="color: #007700">()) =&gt; </span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$perms </span><span style="color: #007700">= </span><span style="color: #0000BB">array_keys</span><span style="color: #007700">(</span><span style="color: #0000BB">$perms</span><span style="color: #007700">[</span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">, </span><span style="color: #0000BB">user_roles</span><span style="color: #007700">())]);<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$admin </span><span style="color: #007700">= </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalCreateUser</span><span style="color: #007700">(</span><span style="color: #0000BB">$perms</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-499"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-499" class="active">In fact this creates a user</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Tue, 10/04/2011 - 12:53.  </div>
+
+  <div class="content">
+    <p>In fact this creates a user with the same permissions as a given role at the time the user is created. With this technique, your user will not have the role itself</p>
+      </div>
+
+  </div>
+<a id="comment-790"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-790" class="active">Hello!
+I wrote a method that</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 08/01/2012 - 11:59.  </div>
+
+  <div class="content">
+    <p>Hello!<br />
+I wrote a method that creates an admin user for Testing:<br />
+<div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">public function </span><span style="color: #0000BB">drupalCreateAdminUser</span><span style="color: #007700">(array </span><span style="color: #0000BB">$permissions </span><span style="color: #007700">= array()) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$roles </span><span style="color: #007700">= </span><span style="color: #0000BB">user_roles</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$index </span><span style="color: #007700">= </span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">, </span><span style="color: #0000BB">$roles</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$user </span><span style="color: #007700">= </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalCreateUser</span><span style="color: #007700">(</span><span style="color: #0000BB">$permissions</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$user</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">roles</span><span style="color: #007700">[</span><span style="color: #0000BB">$index</span><span style="color: #007700">] = </span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp; return </span><span style="color: #0000BB">user_save</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>You may use it like that:</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$user </span><span style="color: #007700">= </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalCreateAdminUser</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalLogin</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+      </div>
+
+  </div>
+<a id="comment-885"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-885" class="active">Here is an example of a</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Sat, 09/08/2012 - 12:50.  </div>
+
+  <div class="content">
+    <p>Here is an example of a function which only takes the role you want for the user you're creating.</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br /> * Creates a user with the give role.<br /> **/<br /></span><span style="color: #007700">public function </span><span style="color: #0000BB">drupalCreateUserWithRole</span><span style="color: #007700">(</span><span style="color: #0000BB">$role</span><span style="color: #007700">) {<br />&nbsp; </span><span style="color: #FF8000">// Get all of the roles in the system.<br />&nbsp; </span><span style="color: #0000BB">$roles </span><span style="color: #007700">= </span><span style="color: #0000BB">user_roles</span><span style="color: #007700">();<br /><br />&nbsp; </span><span style="color: #FF8000">// Find the index for the role we want to assign to the user.<br />&nbsp; </span><span style="color: #0000BB">$index </span><span style="color: #007700">= </span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #0000BB">$role</span><span style="color: #007700">, </span><span style="color: #0000BB">$roles</span><span style="color: #007700">);<br /><br />&nbsp; </span><span style="color: #FF8000">// Get the permissions for the role.<br />&nbsp; </span><span style="color: #0000BB">$permissions </span><span style="color: #007700">= </span><span style="color: #0000BB">user_role_permissions</span><span style="color: #007700">(array(</span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #0000BB">$role</span><span style="color: #007700">, </span><span style="color: #0000BB">$roles</span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$role</span><span style="color: #007700">));<br /><br />&nbsp; </span><span style="color: #FF8000">// Create the user with the permissions.<br />&nbsp; </span><span style="color: #0000BB">$user </span><span style="color: #007700">= </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalCreateUser</span><span style="color: #007700">(</span><span style="color: #0000BB">array_keys</span><span style="color: #007700">(</span><span style="color: #0000BB">$permissions</span><span style="color: #007700">[</span><span style="color: #0000BB">$index</span><span style="color: #007700">]));<br /><br />&nbsp; </span><span style="color: #FF8000">// Assign the role.<br />&nbsp; </span><span style="color: #0000BB">$user</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">roles</span><span style="color: #007700">[</span><span style="color: #0000BB">$index</span><span style="color: #007700">] = </span><span style="color: #0000BB">$role</span><span style="color: #007700">;<br /><br />&nbsp; </span><span style="color: #FF8000">// Return the user we have created.<br />&nbsp; </span><span style="color: #007700">return </span><span style="color: #0000BB">user_save</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+      </div>
+
+  </div>
+<a id="comment-1118"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1118" class="active">&lt;?php  /**   * Creates an</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 10/24/2013 - 12:16.  </div>
+
+  <div class="content">
+    <p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />&nbsp; </span><span style="color: #FF8000">/**<br />&nbsp;&nbsp; * Creates an admin user with 'administrator' role, with a limited number of permissions or all the admin permissions.<br />&nbsp;&nbsp; * @param array $permissions<br />&nbsp;&nbsp; * @return user object<br />&nbsp;&nbsp; */<br />&nbsp; </span><span style="color: #007700">public function </span><span style="color: #0000BB">drupalCreateAdminUser</span><span style="color: #007700">(array </span><span style="color: #0000BB">$permissions </span><span style="color: #007700">= array()) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$roles </span><span style="color: #007700">= </span><span style="color: #0000BB">user_roles</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$index </span><span style="color: #007700">= </span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">, </span><span style="color: #0000BB">$roles</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp; if (empty(</span><span style="color: #0000BB">$permissions</span><span style="color: #007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #FF8000">// Get all the permissions for the 'administrator' role.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$permissions </span><span style="color: #007700">= </span><span style="color: #0000BB">user_role_permissions</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$index </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$user </span><span style="color: #007700">= </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drupalCreateUser</span><span style="color: #007700">(</span><span style="color: #0000BB">$permissions</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$user</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">roles</span><span style="color: #007700">[</span><span style="color: #0000BB">$index</span><span style="color: #007700">] = </span><span style="color: #DD0000">'administrator'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp; return </span><span style="color: #0000BB">user_save</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">);<br />&nbsp; }<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+      </div>
+
+  </div>
+<a id="comment-1287"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1287" class="active">This version actually gives</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Fri, 09/23/2016 - 15:51.  </div>
+
+  <div class="content">
+    <p>This version actually gives the user the role instead of giving them the same permissions as the role. Most of this is identical to drupalCreateUser().</p>
+<p>&lt;?php<br />
+  /**<br />
+   * Create a user with a given set of roles.<br />
+   *<br />
+   * @param array $roles<br />
+   *   Array of role names to assign to the user. Note that the user always has<br />
+   *   the "authenticated users" role.<br />
+   *<br />
+   * @return object|false<br />
+   *   A fully loaded user object with pass_raw property, or FALSE if account<br />
+   *   creation fails.<br />
+   */<br />
+  protected function drupalCreateUserWithRole(array $roles = []) {<br />
+    // Create an array like [$rid =&gt; $rid] with the roles in $role.<br />
+    static $user_roles;<br />
+    if (!isset($user_roles)) {<br />
+      $user_roles = user_roles();<br />
+    }<br />
+    $rids = [];<br />
+    foreach ($roles as $role) {<br />
+      $rid = array_search($role, $user_roles);<br />
+      $rids[$rid] = $rid;<br />
+    }</p>
+<p>    // Create a user assigned to that role.<br />
+    $edit = array();<br />
+    $edit['name'] = $this-&gt;randomName();<br />
+    $edit['mail'] = $edit['name'] . '@example.com';<br />
+    $edit['pass'] = user_password();<br />
+    $edit['status'] = 1;<br />
+    if ($rids) {<br />
+      $edit['roles'] = $rids;<br />
+    }</p>
+<p>    $account = user_save(drupal_anonymous_user(), $edit);</p>
+<p>    $this-&gt;assertTrue(!empty($account-&gt;uid), t('User created with name %name and pass %pass', array('%name' =&gt; $edit['name'], '%pass' =&gt; $edit['pass'])), t('User login'));<br />
+    if (empty($account-&gt;uid)) {<br />
+      return FALSE;<br />
+    }</p>
+<p>    // Add the raw password so that we can log in as this user.<br />
+    $account-&gt;pass_raw = $edit['pass'];<br />
+    return $account;<br />
+  }</p>
+      </div>
+
+  </div>
+<a id="comment-1293"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1293" class="active">Very nice. Thanks for</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 11/08/2016 - 09:06.  </div>
+
+  <div class="content">
+    <p>Very nice. Thanks for sharing, this makes testing integration of features easier.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

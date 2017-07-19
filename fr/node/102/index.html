@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Drupal 7: Se connecter avec Facebook et Twitter | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_fr.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/files/languages/fr_dfb9015ac73d75728c6de27ed916f00d.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal et développement web</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Accueil</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated Il y a <em>3 years 19 weeks</em> so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Drupal 7: Se connecter avec Facebook et Twitter</h2>                                                  <div class="clear-block">
+            <div id="node-102" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 03/05/2014 - 17:03</span>
+  
+    </div>
+
+  <div class="content">
+    <p>Voici ma technique pour permettre la connection au site via Facebook ou Twitter.</p>
+
+<h2>Avant de commencer</h2>
+
+<ul>
+<li>Faites-vous des clé d'application (API) pour Twitter et Facebook, <a href="../../../en/node/101/index.html">tel que décrit ici</a>.</li>
+<li>Télécharger les modules <a href="http://drupal.org/project/twitter">Twitter</a> et <a href="http://drupal.org/project/fboauth">Facebook Oauth</a> pour Drupal.</li>
+<li>Activer <code>twitter_signin</code> et <code>fboauth</code>.</li>
+</ul>
+
+<h2>Twitter</h2>
+
+<ul>
+<li>Sur <code>admin/reports/status</code>, vous verrez qu'il manque les clés de l'application Twitter. Pour les ajouter allez à la page <code>admin/config/services/twitter/settings</code> et mettez-y vos clés.</li>
+<li>Sur votre site Drupal, allez sur la page admin/config/services/twitter/signin et sous "Enregistrer automatiquement les nouveaux utilisateurs", choisissez "Oui". Pour le faire en code, utilisez <code>variable_set('twitter_signin_register', 1);</code>.</li>
+<li>Déconnectez-vous de votre site Drupal</li>
+<li>Vous pouvez maintenant créer un nouveau compte via twitter.</li>
+<li>Déconnectez-vous à nouveau et connectez-vous à nouveau, vous vous connecterez à votre compte existant.</li>
+<li>Note si vous voulez faire des tests automatisés: Actuellement il existe un module <code>twitter_mock</code> qui devrait en principe simuler Twitter pour fins de tests, mais il n'a pas été gardé à jour et ne fonctionne pas.</li>
+</ul>
+
+<h2>Limitations de twitter</h2>
+
+<ul>
+<li>S'il existe déjà un compte sur le site ayant le même nom que votre compte Twitter, le processus ne fonctionnera pas: https://drupal.org/node/2210783</li>
+</ul>
+
+<h2>Facebook</h2>
+
+<ul>
+<li>FB Oauth ne vous avisera pas sur <code>admin/reports/status</code> si vous n'avez pas entré vos clés d'application, à moins d'appliquer <a href="https://drupal.org/node/2210799">ce patch</a>.</li>
+<li>Allez sur <code>admin/config/people/fboauth</code> et entrez l'ID et le secret tels qu'ils apparaissent sur Facebook.</li>
+<li>Maintenant, sur votre site Drupal, ajoutez le bloc "Facebook connect" dans la région de votre choix, uniquement sur la page user/login pour les utilisateurs anonymes.</li>
+<li>Toujours sur votre site Drupal, sur admin/config/people/accounts, dans la section "Qui peut enregistrer des comptes", choisissez "Visiteurs", et cochez "Exiger la vérification de l'adresse de courriel lorsqu'un visiteur crée un compte."</li>
+<li>Vous pouvez maintenant vous déconnecter de Drupal puis vous reconnecter avec Facebook, cela vous créera un nouveau compte.</li>
+</ul>
+
+<h2>Déboguer Facebook</h2>
+
+<ul>
+<li>Si vous voyez une page blanche après vous être connecté, utilisez Safari plutôt que Chrome, vous verrez un message d'erreur qui vous dira quoi faire. Assurez-vous que le domaine de votre site est identique au domaine (app domain) et website url de votre app Facebook.</li>
+</ul>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1243"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1243" class="active">Notez que si vous voulez que</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Fri, 09/05/2014 - 12:56.  </div>
+
+  <div class="content">
+    <p>Notez que si vous voulez que vos clés ne résident pas dans la base de données, vous pouvez ajouter quelque chose comme ceci dans chaque environnement:</p>
+
+<pre><code>$conf['fboauth_id'] = '805591124336769';
+$conf['fboauth_secret'] = '0889a1fb4838a2f2f1b982a203c7e3rf';
+$conf['twitter_consumer_key'] = 'EH2nfafddV6ZtffgNXTukw';
+$conf['twitter_consumer_secret'] = 'kTRFGo3Hg2zOUS9gQuCfRfd33BnnR4VVrEzkud7ZjY';
+</code></pre>
+
+<p>Ceci vous permet de rebâter votre bd sans perdre d'infos (par exemple en utilisant <code>drush si -y &amp;&amp; drush en monsite_deploy -y</code> si vous utilisez un <a href="http://dcycleproject.org/blog/44/what-site-deployment-module">module de déploiement de site</a>.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

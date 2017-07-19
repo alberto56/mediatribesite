@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>nicely formatted multilingual dates | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 51 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>nicely formatted multilingual dates</h2>                                                  <div class="clear-block">
+            <div id="node-74" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Tue, 07/23/2013 - 13:59</span>
+  
+    </div>
+
+  <div class="content">
+    <p>Here is a code snippet which allows nicely formatted multilingual dates<br />
+<div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br /> * Generate some nicely formatted dates depending on the current lang<br /> */<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">MYMODULE_format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">, </span><span style="color: #0000BB">$lang </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">) {<br />&nbsp; if (!</span><span style="color: #0000BB">$lang</span><span style="color: #007700">) {<br />&nbsp;&nbsp;&nbsp; global </span><span style="color: #0000BB">$language</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$lang </span><span style="color: #007700">= </span><span style="color: #0000BB">$language</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">language</span><span style="color: #007700">;<br />&nbsp; }<br />&nbsp; </span><span style="color: #0000BB">$extra </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp; switch (</span><span style="color: #0000BB">$lang</span><span style="color: #007700">) {<br />&nbsp;&nbsp;&nbsp; case </span><span style="color: #DD0000">'fr'</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'j'</span><span style="color: #007700">, </span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">) == </span><span style="color: #0000BB">1</span><span style="color: #007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$extra </span><span style="color: #007700">= </span><span style="color: #DD0000">'er'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return </span><span style="color: #0000BB">drupal_strtolower</span><span style="color: #007700">(</span><span style="color: #0000BB">format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">, </span><span style="color: #DD0000">'custom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'j'</span><span style="color: #007700">) . </span><span style="color: #0000BB">$extra </span><span style="color: #007700">. </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">t</span><span style="color: #007700">(</span><span style="color: #0000BB">format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">, </span><span style="color: #DD0000">'custom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'F Y'</span><span style="color: #007700">), array(), array(</span><span style="color: #DD0000">'context' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'admin'</span><span style="color: #007700">)));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />&nbsp;&nbsp;&nbsp; default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'j'</span><span style="color: #007700">, </span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">) == </span><span style="color: #0000BB">1</span><span style="color: #007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$extra </span><span style="color: #007700">= </span><span style="color: #DD0000">'st'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return </span><span style="color: #0000BB">format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">, </span><span style="color: #DD0000">'custom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'F j'</span><span style="color: #007700">, </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #0000BB">$lang</span><span style="color: #007700">) . </span><span style="color: #0000BB">$extra </span><span style="color: #007700">. </span><span style="color: #DD0000">', ' </span><span style="color: #007700">. </span><span style="color: #0000BB">format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">, </span><span style="color: #DD0000">'custom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Y'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />&nbsp; }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+<p>The above goes in your module, and what follows goes in your template.php in your theme.</p>
+<p><div class="codeblock"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br /> * Implement theme hook suggestion date_display_single().<br /> */<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">MYTHEME_date_display_single</span><span style="color: #007700">(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">) {<br />&nbsp; </span><span style="color: #0000BB">$date </span><span style="color: #007700">= </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'date'</span><span style="color: #007700">];<br />&nbsp; </span><span style="color: #0000BB">$timezone </span><span style="color: #007700">= </span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'timezone'</span><span style="color: #007700">];<br />&nbsp; </span><span style="color: #0000BB">$datetime </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp; <br />&nbsp; if (isset(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'dates'</span><span style="color: #007700">][</span><span style="color: #DD0000">'value'</span><span style="color: #007700">][</span><span style="color: #DD0000">'db'</span><span style="color: #007700">][</span><span style="color: #DD0000">'datetime'</span><span style="color: #007700">]) &amp;&amp; </span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'MYMODULE_format_date'</span><span style="color: #007700">)) {<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$timestamp </span><span style="color: #007700">= </span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #0000BB">$variables</span><span style="color: #007700">[</span><span style="color: #DD0000">'dates'</span><span style="color: #007700">][</span><span style="color: #DD0000">'value'</span><span style="color: #007700">][</span><span style="color: #DD0000">'db'</span><span style="color: #007700">][</span><span style="color: #DD0000">'datetime'</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$date </span><span style="color: #007700">= </span><span style="color: #0000BB">MYMODULE_format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp; </span><span style="color: #0000BB">$datetime </span><span style="color: #007700">= </span><span style="color: #DD0000">' datetime="' </span><span style="color: #007700">. </span><span style="color: #0000BB">format_date</span><span style="color: #007700">(</span><span style="color: #0000BB">$timestamp</span><span style="color: #007700">, </span><span style="color: #DD0000">'custom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Y-m-d'</span><span style="color: #007700">) . </span><span style="color: #DD0000">'"'</span><span style="color: #007700">;<br />&nbsp; }<br />&nbsp; <br />&nbsp; </span><span style="color: #FF8000">// Wrap the result with the attributes.<br />&nbsp; </span><span style="color: #007700">return </span><span style="color: #DD0000">'&lt;time' </span><span style="color: #007700">. </span><span style="color: #0000BB">$datetime </span><span style="color: #007700">. </span><span style="color: #DD0000">'&gt;' </span><span style="color: #007700">. </span><span style="color: #0000BB">$date </span><span style="color: #007700">. </span><span style="color: #0000BB">$timezone </span><span style="color: #007700">. </span><span style="color: #DD0000">'&lt;/time&gt;'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div></p>
+  </div>
+
+  </div>          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

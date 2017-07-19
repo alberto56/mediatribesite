@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Écrire des tests automatisés pour Wordpress | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 32 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Écrire des tests automatisés pour Wordpress</h2>                                                  <div class="clear-block">
+            <div id="node-95" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Mon, 12/02/2013 - 11:34</span>
+  
+    </div>
+
+  <div class="content">
+    <p>Nous tentons dans mon agence d'implémenter des tests automatisés pour plusieurs technologies avec lesquelles nous travaillons.</p>
+
+<p>Pour Drupal, la méthode que nous avons mise en place est documentée sur le site <a href="http://dcycleproject.org">Dcycle</a>.</p>
+
+<p>Pour Wordpress, je me suis basé sur <a href="http://metro.co.uk/2013/11/12/unit-testing-a-wordpress-theme-4169584/">cette méthode</a> pour donner la procédure suivante.</p>
+
+<p>Étant un développeur Drupal, le monde du Wordpress m'est à peu près inconnu, alors si quelque chose ici ne suit pas les normes reconnues de la communauté, je m'en excuse; n'hésitez pas à m'en faire part dans la section "commentaires".</p>
+
+<p>Voici donc les étapes que j'ai suivies qui me permettent de faire des tests automatisés sur un projet Wordpress:</p>
+
+<p>(1) Vous assurer que <code>phpunit</code> et <code>svn</code> soient installés sur votre machine</p>
+
+<pre><code>phpunit --version
+svn --version
+</code></pre>
+
+<p>ne devraient pas donner "command not found".</p>
+
+<p>(2) aller dans dans votre répertoire wordpress local</p>
+
+<pre><code>WPDIR=/chemin/vers/wordpress
+cd $WPDIR
+</code></pre>
+
+<p>(3) si le répertoire <code>wordpress-develop</code> n'existe pas dans votre répertoire wordpress, l'installer:</p>
+
+<pre><code>svn co http://develop.svn.wordpress.org/trunk/ wordpress-develop
+cd wordpress-develop
+</code></pre>
+
+<p>(4) contrairement à Drupal qui gère automatiquement les bases de données jetables pour les tests, pour Wordpress, il faut créer une base de données à cette fin. Attention: si vous utilisez votre BD existante, <em>tout votre contenu sera effacé!</em> (paraît-il).</p>
+
+<pre><code>TESTDB=wptest
+echo "create database $TESTDB" | mysql -uroot -proot
+</code></pre>
+
+<p>(5) créer le document qui contient l'info sur votre BD:</p>
+
+<pre><code>cp wp-tests-config-sample.php wp-tests-config.php
+</code></pre>
+
+<p>(6) ouvrir <code>wp-tests-config.php</code> avec un éditeur texte et y mettre les infos sur votre BD de tests.</p>
+
+<p>(7) <code>wordpress-develop/src</code> contient une installation complète de Wordpress. Puisque votre code personnalisé se trouve dans <code>wp-content</code>, il faut retirer <code>wordpress-develop/src/wp-content</code> et y mettre plutôt un alias vers votre code.</p>
+
+<pre><code>cd src
+rm -rf wp-content
+ln -s ../../wp-content wp-content
+cd ..
+</code></pre>
+
+<p>(8) Dire au test d'utiliser votre thème:</p>
+
+<pre><code>THEME=nom_machine_de_mon_theme
+echo "define( 'WP_DEFAULT_THEME', '$THEME' );" &gt;&gt; wp-tests-config.php
+</code></pre>
+
+<p>(9) À présent écrivons notre premier test, nous assurant que notre thème a été bien installé. Pour ce faire, nous allons créer un document <code>tests/phpunit/tests/my.php</code> et y mettre:</p>
+
+<pre><code>&lt;?php
+/**
+ * @file
+ * See http://mediatribe.net/fr/node/95
+ */
+
+class Test_My extends WP_UnitTestCase {
+  function test_simple() {
+    $this-&gt;assertEquals(wp_get_theme(), 'Nom humain de mon thème');
+  }
+}
+</code></pre>
+
+<p>(10) roulons à présent notre test:</p>
+
+<pre><code>phpunit tests/phpunit/tests/my.php
+</code></pre>
+
+<p>(11) vous devrez voir à présent:</p>
+
+<pre><code>OK (1 test, 1 assertion)
+</code></pre>
+
+<p>(12) mettons à présent un .htaccess dans wordpress-develop pour éviter que ce répertoire ne soit accessible sur le web:</p>
+
+<pre><code>echo 'Deny from all' &gt;&gt; .htaccess
+</code></pre>
+
+<p>(13) Ajoutons tout ça à notre répertoire .git et poussons ça à master. (À noter que <code>wordpress-develop/wp-tests-config.php</code> ne se trouvera pas dans git car il y a une ligne spécifiant qu'il doit être ignoré dans <code>wordpress-develop/.gitignore</code>.)</p>
+
+<pre><code>cd ../
+git add .
+git commit -am 'Added a test, see http://mediatribe.net/fr/node/95'
+git push origin master
+</code></pre>
+
+<h2>Intégration continue</h2>
+
+<p>Suivez les étapes suivantes si vous avez un serveur d'intégration continue comme <a href="http://jenkins-ci.org">Jenkins</a> qui teste votre code sur chaque push.</p>
+
+<p>(14) Faites rouler votre job au moins une fois pour récupérer votre nouveau code, notamment le répertoire <code>wordpress-develop</code>.</p>
+
+<p>(14) Vous connecter en ligne de commande avec l'utilisateur <code>jenkins</code> sur votre serveur d'intégration continue.</p>
+
+<p>(15) Refaites les étapes (1), (2), (4), (5), (6) et (8), ci-dessus, mais sur votre serveur d'intégration continue (il se peut que vous deviez installer <code>phpunit</code> sur votre serveur):</p>
+
+<pre><code>phpunit --version
+cd /var/lib/jenkins/workspace/monprojetjenkins
+TESTDB=wptest
+echo "create database $TESTDB" | mysql -uroot -proot
+cd wordpress-develop
+cp wp-tests-config-sample.php wp-tests-config.php
+vi wp-tests-config.php # et mettre vos infos de DB
+THEME=nom_machine_de_mon_theme
+echo "define( 'WP_DEFAULT_THEME', '$THEME' );" &gt;&gt; wp-tests-config.php
+</code></pre>
+
+<p>(16) Croisez-vous les doigts et votre test devrait passer.</p>
+
+<pre><code>phpunit tests/phpunit/tests/my.php
+</code></pre>
+
+<p>(17) maintenant ajouter cette ligne à votre job d'intégration continue, par exemple à <code>http://jenkins.example.com/job/monprojet/configure</code>:</p>
+
+<pre><code>cd wordpress-develop &amp;&amp; phpunit tests/phpunit/tests/my.php
+</code></pre>
+
+<p>(18) lancer un build de votre job jenkins ("Build now"). Votre test devrait passer (indicateur bleu sur Jenkins).</p>
+
+<p>(19) Voyez ce qui se passe lorsque votre test ne passe <em>pas</em>. Ajoutez cette fonction dans <code>wordpress-develop/tests/phpunit/tests/my.php</code></p>
+
+<pre><code>...
+function test_fail() {
+  $this-&gt;assertEquals(1, 2);
+}
+...
+</code></pre>
+
+<p>(20) Poussez ça sur master.</p>
+
+<pre><code>git commit -am 'exemple de test qui ne passe pas'
+git push origin master
+</code></pre>
+
+<p>(21) Si votre job Jenkins n'est pas configurée pour être déclanchée automatiquement lors d'un changement au répertoire git, lancez votre job.</p>
+
+<p>(22) Si tout marche, vous verrez un beau point rouge signalant un échec de votre test.</p>
+
+<p>(23) Commentez votre test qui échoue (gardez-le pour faire des démos sur le fonctionnement des tests, à l'intention de votre équipe), puis poussez à nouveau votre code, dorénavant fonctionnel.</p>
+  </div>
+
+  </div>          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

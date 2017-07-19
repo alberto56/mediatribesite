@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Displaying a block with a field from the current node using Views 2 and Drupal 6 | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>6 years 27 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Displaying a block with a field from the current node using Views 2 and Drupal 6</h2>                                                  <div class="clear-block">
+            <div id="node-21" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Mon, 03/08/2010 - 15:45</span>
+  
+      <div class="terms terms-inline"><ul class="links inline"><li class="taxonomy_term_1 first"><a href="../../taxonomy/term/1/index.html" rel="tag" title="">Drupal</a></li>
+<li class="taxonomy_term_6 last"><a href="../../taxonomy/term/6/index.html" rel="tag" title="">Views</a></li>
+</ul></div>
+    </div>
+
+  <div class="content">
+    <p>I have a CCK field with an image on my page nodes. I want to display a block with the CCK field value on its related node, but nothing on non-pages.</p>
+<p>This often works in the views preview, but not on the actual page. This was driving me nuts and I spent a few hours finding this solution:</p>
+<p>Create view with</p>
+<ul>
+<li>Filter: node nid &gt; 0</li>
+<li>Argument: node nid, Action to take if argument is not present: Provide default argument: node nid from URL; validator: basic. Action to take if does not validate: Hide view</li>
+<li>Create a new block display and you're done!</li>
+</ul>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-267"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-267" class="active">Wow</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Sat, 06/05/2010 - 17:14.  </div>
+
+  <div class="content">
+    <p>Big thanks for this. Exactly what I was looking for :)</p>
+      </div>
+
+  </div>
+<a id="comment-364"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-364" class="active">This is EXACTLY what I was</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 03/03/2011 - 02:14.  </div>
+
+  <div class="content">
+    <p>This is EXACTLY what I was looking for. Thanks so much for posting this. I took me a while to find this post, but  I knew the answer had to be somewhat simple.</p>
+      </div>
+
+  </div>
+<a id="comment-563"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-563" class="active">I&#039;m new to coding...anyone</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 12/06/2011 - 12:10.  </div>
+
+  <div class="content">
+    <p>I'm new to coding...anyone have an example of the code for the argument??</p>
+<p>Thanks!</p>
+      </div>
+
+  </div>
+<a id="comment-678"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-678" class="active">If you&#039;re using Views 3 (and</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Sat, 04/14/2012 - 18:36.  </div>
+
+  <div class="content">
+    <p>If you're using Views 3 (and perhaps even using Views 2), neither the validator nor the filter are needed. Use only a Contextual Filter (Argument) for Content: Nid with a Default Value of Content ID from URL.</p>
+<p>No code necessary for the argument in either case.</p>
+<p>-- Don</p>
+      </div>
+
+  </div>
+<div class="indented"><a id="comment-1230"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1230" class="active">Thanks--this is exactly what</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Wed, 08/27/2014 - 11:46.  </div>
+
+  <div class="content">
+    <p>Thanks--this is exactly what I needed to create my custom node view.</p>
+      </div>
+
+  </div>
+</div><a id="comment-1027"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1027" class="active">Works with Drupal 7 Panels</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Tue, 01/29/2013 - 00:20.  </div>
+
+  <div class="content">
+    <p>Works with Drupal 7 Panels and views. thanks!</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xml:base="http://mediatribe.net"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+ <title>mediatribe.net - Views</title>
+ <link>http://mediatribe.net/en/taxonomy/term/6/0</link>
+ <description></description>
+ <language>en</language>
+<item>
+ <title>Displaying a block with a field from the current node using Views 2 and Drupal 6</title>
+ <link>http://mediatribe.net/en/node/21</link>
+ <description>&lt;p&gt;I have a CCK field with an image on my page nodes. I want to display a block with the CCK field value on its related node, but nothing on non-pages.&lt;/p&gt;
+&lt;p&gt;This often works in the views preview, but not on the actual page. This was driving me nuts and I spent a few hours finding this solution:&lt;/p&gt;
+&lt;p&gt;Create view with&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Filter: node nid &amp;gt; 0&lt;/li&gt;
+&lt;li&gt;Argument: node nid, Action to take if argument is not present: Provide default argument: node nid from URL; validator: basic. Action to take if does not validate: Hide view&lt;/li&gt;
+&lt;li&gt;Create a new block display and you&#039;re done!&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+ <comments>http://mediatribe.net/en/node/21#comments</comments>
+ <category domain="http://mediatribe.net/en/taxonomy/term/1">Drupal</category>
+ <category domain="http://mediatribe.net/en/taxonomy/term/6">Views</category>
+ <pubDate>Mon, 08 Mar 2010 19:45:49 +0000</pubDate>
+ <dc:creator>Albert</dc:creator>
+ <guid isPermaLink="false">21 at http://mediatribe.net</guid>
+</item>
+</channel>
+</rss>
+
+<!-- Localized -->

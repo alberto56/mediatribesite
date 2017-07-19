@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="../../../misc/favicon.ico" type="image/x-icon" />
+    <title>Selenium: testing Javascript with Simpletest on Drupal 7 | mediatribe.net</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/codefilter/codefilter-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/node/node-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/defaults-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/system/system-menus-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/user/user-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/cck/theme/content-module-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/filefield/filefield-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/mollom/mollom-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/all/modules/contrib/views/css/views-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../modules/comment/comment-j.css" />
+<link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style.css" /><link type="text/css" rel="stylesheet" media="all" href="../../../sites/mediatribe.net/themes/mediatribe/css/style_en.css" />    <script type="text/javascript" src="../../../misc/jquery.js?j"></script>
+<script type="text/javascript" src="../../../misc/drupal.js?j"></script>
+<script type="text/javascript" src="../../../sites/all/modules/contrib/google_analytics/googleanalytics.js?j"></script>
+<script type="text/javascript" src="../../../sites/mediatribe.net/modules/dhtml_menu/dhtml_menu.js?j"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"dhtmlMenu":{"slide":"slide","clone":"clone"}});
+//--><!]]>
+</script>
+  </head>
+<body>
+<div id="container">
+  <div id="header" style="position:relative;">
+      <div style="position:absolute;top:55px;left:40px;font-family:Verdana, sans-serif;color:white;font-weight:bold;">
+              </div>
+    &nbsp;
+  </div>
+  <h1 id="intro">mediatribe.net -- Drupal and Web Development</h1>
+  <div id="content">
+      </div>
+  <div id="contentmid"> 
+          <div class="breadcrumb"><a href="../../index.html">Home</a></div> 
+	  <div id="block-views-my_outdated_post-block_1" class="block block-views">
+
+  <div class="content">
+    <div class="view view-my-outdated-post view-id-my_outdated_post view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-changed">
+                <span class="field-content">Notice: this post was last updated <em>3 years 30 weeks</em> ago so it might be outdated. Please be cautious before implementing any of suggestions herein.</span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+                              <h2>Selenium: testing Javascript with Simpletest on Drupal 7</h2>                                                  <div class="clear-block">
+            <div id="node-56" class="node clear-block">
+
+
+
+  <div class="meta">
+      <span class="submitted">Submitted by Albert on Wed, 05/02/2012 - 11:17</span>
+  
+    </div>
+
+  <div class="content">
+    <h3>Prerequisites</h3>
+<p>To get the best of this tutorial, it is best to know a bit about Simpletest, Drupal 7, the command line, and applying patches. Chrome and Firefox should be installed on your computer. I tested this on Mac OS but it should work on Linux. Going through it all might take you about an hour. You should do all of it on your laptop (using MAMP or <a href="../../../web/20120828013532/http_/drupal.org/project/quickstart/index.html">Quickstart</a>, rather than a remote server -- I have used MAMP).</p>
+<h3>Introduction</h3>
+<p>Drupal's core Testing (machine name: simpletest) module allows you to create functional tests which can be run from within any instance of Drupal. These tests ignore the current site and install a brand new testing instance of your Drupal site on which to perform tests; this sandbox is destroyed after the tests run. To learn this by example, please see the <a href="../../../web/20120828013532/http_/drupal.org/project/examples/index.html" title="http://drupal.org/project/examples">http://drupal.org/project/examples</a> module.<br />
+The advantage of Simpletest is that all your tests are run in a sandbox: your test might want to make sure that it is possible to add a new node, and to do this it adds a new node, but it does it in a sandbox; your real live site is unchanged.<br />
+One limitation of Simpletest is its inability to use almost any Javascript, so what you're testing is your site's behavior with Javascript turned off.<br />
+Selenium itself deals well Javascript elements, and you can install a Selenium IDE plugin for Firefox to record and run tests on your Drupal (or any other) site. However, running these tests actually modifies whatever site you run them on, rather than in a sandbox.<br />
+To bridge this gap, the selenium (<a href="../../../web/20120828013532/http_/drupal.org/project/selenium/index.html" title="http://drupal.org/project/selenium">http://drupal.org/project/selenium</a>) project uses Selenium to run tests on a brand new installation, not your current site.<br />
+Please note that as of this writing, the Selenium module for Drupal has many open issues and does not seem to be very widely used; so this is not meant for intensive use. The Drupal community is also looking at other options for Drupal 8 (see <a href="../../../web/20120828013532/http_/drupal.org/node/775050/index.html" title="http://drupal.org/node/775050">http://drupal.org/node/775050</a> and <a href="../../../web/20120828013532/http_/drupal.org/node/237566/index.html" title="http://drupal.org/node/237566">http://drupal.org/node/237566</a>).<br />
+For one example of how Selenium is used for QA testing, see <a href="../../../web/20120828013532/http_/codebaboon.com/economist-testing-drupal-using-selenium/index.html">this blog post</a> on The Economist's website.</p>
+<h3>Setup</h3>
+<p>For this tutorial we'll install a new instance of Drupal 7 and the selenium module, which can be found at <a href="../../../web/20120828013532/http_/drupal.org/project/selenium/index.html" title="http://drupal.org/project/selenium">http://drupal.org/project/selenium</a>. I suggest you get the latest development version of both.<br />
+Because Drupal Selenium tests are run on specific real browsers, you will need to make sure you have Chrome and Firefox on your system.<br />
+Let's follow the instructions in selenium's INSTALL.txt file:<br />
+Get the Selenium server from <a href="../../../web/20120828013532/http_/seleniumhq.org/download/index.html" title="http://seleniumhq.org/download/">http://seleniumhq.org/download/</a>. This is a .jar file you can put anywhere on your computer (I suggest leaving it somewhere relatively permanent, not your Desktop or Downloads folder --  I put in my Mac's /Applications folder).<br />
+Now download the Chrome driver at <a href="../../../web/20120828013532/http_/code.google.com/p/chromedriver/downloads/list/index.html" title="http://code.google.com/p/chromedriver/downloads/list">http://code.google.com/p/chromedriver/downloads/list</a>. Put it in the same folder as your Selenium server.<br />
+Now, in your command line, run the following command, using your actual path instead of /path/to/:<br />
+java -Dwebdriver.chrome.driver=/path/to/chromedriver -jar /path/to/selenium-server-standalone*jar<br />
+(you might want to set up an alias to this command to avoid typing it up each time you want to launch the selenium server. Here is how to do it on a mac: <a href="../../../web/20120828013532/http_/goo.gl/uOkW9/index.html" title="http://goo.gl/uOkW9">http://goo.gl/uOkW9</a>)<br />
+Wait a few minutes, and the javascript app seems to hang after "Started org.openqa.jetty.jetty.Server@...". This is OK. Leave the terminal window open.<br />
+Notice that the Selenium module includes a patch for Drupal core. To avoid a "Hunk failed" error, check the issue <a href="../../../web/20120828013532/http_/drupal.org/node/1553258/index.html" title="http://drupal.org/node/1553258">http://drupal.org/node/1553258</a>. If it has not been resolved, you might want to patch the selenium module and then use the updated patch in that module to patch core. (If you don't apply this patch to selenium before patching core, everything should still work except tests on Chrome.)<br />
+Patch Drupal core now following the instructions in Selenium's INSTALL.txt.</p>
+<h3>Running an example test to get the feel for it</h3>
+<p>Now, on your Drupal site, enable the selenium module, and its dependency, Testing (simpletest), and go to <a href="../../../web/20120828013532/http_/example.com/admin/config/development/testing/index.html" title="http://example.com/admin/config/development/testing">http://example.com/admin/config/development/testing</a>. Note that you can launch your test from any browser; I use Safari.<br />
+Let's run a test that ships with the Selenium module for Drupal: In the Selenium test group, select the test "Filefield ajax upload". This is a javascript widget which is untestable with Simpletest alone. Click "Run tests".<br />
+This will open a Firefox window (you might have to dismiss a "safe mode" dialog box), and performs the Selenium tests in real time. Next, it does the same in Chrome (if you get an error, make sure the selenium server and the chrome driver are running and you performed the setup correctly).</p>
+<h3>Creating your own Selenium tests</h3>
+<p>That's all very neat. Now let's leverage this for our own modules and features.<br />
+Before creating your own Selenium tests on your module, disable Selenium, and visit <a href="../../../web/20120828013532/http_/example.com/admin/config/development/testing/index.html" title="http://example.com/admin/config/development/testing">http://example.com/admin/config/development/testing</a>. If you get a Fatal error, you have run into the issue <a href="../../../web/20120828013532/http_/drupal.org/node/1553320/index.html" title="http://drupal.org/node/1553320">http://drupal.org/node/1553320</a>.<br />
+This is ugly, but not critical, on your test site; but if your module contains a Selenium-based simpletest and you're deploying it, you don't want to cause Fatal errors on all sites where it's merely present (without even being enabled or installed).<br />
+My solution is to check for class_exists('DrupalSeleniumWebTestCase') before loading your test. Please see the patch at comment #1 of <a href="../../../web/20120828013532/http_/drupal.org/node/1553320/index.html" title="http://drupal.org/node/1553320">http://drupal.org/node/1553320</a> for details on this.<br />
+Another problem is Selenium's inability to select items from a Dropdown menu. Please see <a href="../../../web/20120828013532/http_/drupal.org/node/1553368/index.html" title="http://drupal.org/node/1553368">http://drupal.org/node/1553368</a> and <a href="../../../web/20120828013532/http_/drupal.org/node/1312184/index.html" title="http://drupal.org/node/1312184">http://drupal.org/node/1312184</a> to see the status of this problem. You might have to do some debugging to get this to work (I gave up for the moment!), or just avoid all dropdown menus in your tests.</p>
+<h3>Conclusion</h3>
+<p>Automated testing has greatly improved the stability of Drupal and contributed modules. With Javascript becoming more and more important for Drupal and on the web in general, we need to start systematic automated testing for our Javascript. For now the Selenium module is relatively functional, but the Drupal community is working on other options too.</p>
+<h3>More resources</h3>
+<ul>
+<li><a href="../../../web/20120828013532/http_/drupal.org/node/775050/index.html" title="http://drupal.org/node/775050">http://drupal.org/node/775050</a></li>
+<li><a href="../../../web/20120828013532/http_/drupal.org/node/237566/index.html" title="http://drupal.org/node/237566">http://drupal.org/node/237566</a></li>
+<li><a href="../../../web/20120828013532/http_/drupal.org/project/testswarm/index.html" title="http://drupal.org/project/testswarm">http://drupal.org/project/testswarm</a></li>
+</ul>
+  </div>
+
+  </div><div id="comments">
+  <a id="comment-1129"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1129" class="active">Great work to share this</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Thu, 12/19/2013 - 06:43.  </div>
+
+  <div class="content">
+    <p>Great work to share this important example of testing JavaScript with Drupal7. Keep it up for doing this type of job.</p>
+      </div>
+
+  </div>
+<a id="comment-1130"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1130" class="active">Thanks, this is an old</a></h3>
+
+  <div class="submitted">
+    Submitted by Albert on Thu, 12/19/2013 - 09:17.  </div>
+
+  <div class="content">
+    <p>Thanks, this is an old example, but it still works AFAIK.</p>
+<p>I just realized a good chunk of the article was hosted on Koumbit.org's old site, which they just revamped, removing all old articles. I copied it from the Way Back Machine back here.</p>
+<p>Cheers,</p>
+<p>Albert.</p>
+      </div>
+
+  </div>
+<a id="comment-1137"></a>
+<div class="comment comment-published clear-block">
+  
+  
+  <h3><a href="index.html#comment-1137" class="active">Hi Albert,
+You may be</a></h3>
+
+  <div class="submitted">
+    Submitted by Anonymous on Mon, 02/03/2014 - 19:07.  </div>
+
+  <div class="content">
+    <p>Hi Albert,</p>
+<p>You may be interested in SeLite. It's a framework for Selenium IDE that allows your test to access (read and write to) a test database (isolated from the database of the tested application).</p>
+<p>SeLite is ideal for Drupal, since all Drupal text content is in DB. Also, Drupal can work with SQLite DB, which is perfect for SeLite - so if (some of) your test deployments can use SQLite, your test data lifecycle would be very easy.</p>
+<p>See <a href="https://code.google.com/p/selite/wiki/ProjectHome" title="https://code.google.com/p/selite/wiki/ProjectHome">https://code.google.com/p/selite/wiki/ProjectHome</a> and <a href="https://code.google.com/p/selite/wiki/DrupalTutorial" title="https://code.google.com/p/selite/wiki/DrupalTutorial">https://code.google.com/p/selite/wiki/DrupalTutorial</a>.</p>
+      </div>
+
+  </div>
+</div>
+          </div>
+            </div>
+  <div id="rightColumn">
+          </div>
+  <div id="footer">
+    <p><span><a href="http://www.sitecreative.net/">Site design</a> by <a href="http://www.sitecreative.net/">Site Creative</a> | (c) 2017 Albert Albala</span></p>
+  </div>
+</div>
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-8868175-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+  </body>
+</html>
+
+<!-- Localized -->
